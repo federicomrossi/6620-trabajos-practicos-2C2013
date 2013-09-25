@@ -1,0 +1,19 @@
+TAREAS:
+
+- Crear arrays estaticos, grandes, e implementar test para probar los algoritmos por camino feliz, mejor caso y peor caso de cada algoritmo
+- Implementar algoritmo Bubble Sort en C, tiene q pasar los test
+- Implementar funcion merge(left, rigth) en C, que mergea de manera ordenada dos listas o arrays, crear test para ver que funcione
+- Implementar algoritmo MargeSort en C utilizando merge(left, rigth), tiene que pasar los test
+- Implementar funcion merge(left, rigth) en ASSEMBLER, que mergea de manera ordenada dos listas o arrays, crear test para ver que funcione
+- Implementar algoritmo MargeSort en ASSEMBLER utilizando merge(left, rigth), tiene que pasar los test
+- Implementar funcion que lee un archivo de palabras a ordenar y los carga en un array
+- Implementar que guarda en un archivo las palabras guardadas en un array
+- Crear estructura del informe
+- Testear con archivos de palabras de distintos tamaños, los distintos metodos creados. 
+  Guardando en un archivo de tipo CSV con el nombre del metodo (ej: mergeSortAssembler) los tiempos que tardo ese algoritmo para procesar ese archivo. Ejemplo:
+  Archivo;Tiempo;
+  1;0.5
+  2;0.8
+  3;2
+
+  De esta manera se puede levantar en un excel para graficar los tiempos y compararlos para sacar conclusiones

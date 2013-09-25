@@ -1,0 +1,29 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {2}Compilaci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {3}Utilizaci\IeC {\'o}n}{1}
+\contentsline {subsection}{\numberline {3.1}Implementaci\IeC {\'o}n en C}{1}
+\contentsline {subsection}{\numberline {3.2}Implementaci\IeC {\'o}n en Assembly}{1}
+\contentsline {section}{\numberline {4}Implementaciones}{1}
+\contentsline {subsection}{\numberline {4.1}Implementaci\IeC {\'o}n en C}{2}
+\contentsline {subsubsection}{\numberline {4.1.1}Algoritmo \textit {Bubblesort}}{2}
+\contentsline {subsubsection}{\numberline {4.1.2}Algoritmo \textit {Shellsort}}{2}
+\contentsline {subsection}{\numberline {4.2}Implementaci\IeC {\'o}n en Assembly}{3}
+\contentsline {subsubsection}{\numberline {4.2.1}Algoritmo \textit {Shellsort}}{3}
+\contentsline {section}{\numberline {5}Debugging}{3}
+\contentsline {section}{\numberline {6}Pruebas}{3}
+\contentsline {section}{\numberline {7}Conclusiones}{4}
+\contentsline {section}{Appendices}{6}
+\contentsline {section}{\numberline {A}Implementaci\IeC {\'o}n completa en lenguaje C}{6}
+\contentsline {subsection}{\numberline {A.1}\textit {tp0.c}. Implementaci\IeC {\'o}n del main del programa}{6}
+\contentsline {subsection}{\numberline {A.2}\textit {bubblesort.h}. Declaraci\IeC {\'o}n de la librer\IeC {\'\i }a Bubblesort}{6}
+\contentsline {subsection}{\numberline {A.3}\textit {bubblesort.c}. Definici\IeC {\'o}n de la librer\IeC {\'\i }a Bubblesort}{6}
+\contentsline {subsection}{\numberline {A.4}\textit {shellsort.h}. Declaraci\IeC {\'o}n de la librer\IeC {\'\i }a Shellsort}{6}
+\contentsline {subsection}{\numberline {A.5}\textit {shellsort.c}. Definici\IeC {\'o}n de la librer\IeC {\'\i }a Shellsort}{6}
+\contentsline {subsection}{\numberline {A.6}\textit {fileloader.h}. Declaraci\IeC {\'o}n de la librer\IeC {\'\i }a File Loader}{6}
+\contentsline {subsection}{\numberline {A.7}\textit {fileloader.c}. Definici\IeC {\'o}n de la librer\IeC {\'\i }a File Loader}{6}
+\contentsline {section}{\numberline {B}Implementaci\IeC {\'o}n completa de Shellsort en assembly MIPS}{6}
+\contentsline {subsection}{\numberline {B.1}\textit {tp0.c}. Implementaci\IeC {\'o}n del main del programa}{6}
+\contentsline {subsection}{\numberline {B.2}\textit {shellsort.S}. Implementaci\IeC {\'o}n del algoritmo Shellsort}{6}
+\contentsline {subsection}{\numberline {B.3}\textit {compare.S}. Implementaci\IeC {\'o}n del comparador de palabras}{6}
+\contentsline {subsection}{\numberline {B.4}\textit {swap.S}. Implementaci\IeC {\'o}n del comparador de palabras}{6}
