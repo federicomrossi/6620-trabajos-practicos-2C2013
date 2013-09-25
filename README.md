@@ -1,4 +1,4 @@
-6620-tp0
-========
+6620-trabajos-practicos-2c2013
+==============================
 
-66.20 - Trabajo Práctico N°0
+66.20 - Trabajos Prácticos
