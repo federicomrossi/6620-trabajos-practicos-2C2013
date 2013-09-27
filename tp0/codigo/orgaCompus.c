@@ -54,6 +54,7 @@ void getFileName(char* optarg, char** fileName) {
 
 int main(int argc, char* argv[]) {
 	int opt, finished = 0;
+	char* file=NULL;
 	unsigned x = 8, y = 8; // Valores default
 
 	while (((opt = getopt(argc, argv, "hVr:o:")) != -1) && finished == 0) {
@@ -70,13 +71,15 @@ int main(int argc, char* argv[]) {
 			case 'r':	getXY(optarg, &x, &y);
 						break;
 			// Output
-			case 'o':   pgm(x, y, "lala.txt");
+			case 'o':   file=optarg;
 						printf("x: %d \ny: %d \nNombre Archivo: %s\n", x,
 								y, optarg);
 						finished = 1;
 						break;
 		}
 	}
+	if(file)
+        pgm(x, y, file);
 
 
 	return EXIT_SUCCESS;
