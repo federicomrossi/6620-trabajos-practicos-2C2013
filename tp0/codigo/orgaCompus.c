@@ -3,7 +3,7 @@
  Name        : OrgaCompus.c
  Author      : Belen Beltran
  Version     :
- Copyright   : 
+ Copyright   :
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "pgm.h"
+#include "pgm.h"
 
 #define MAX_NAME 256
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
 			case 'r':	getXY(optarg, &x, &y);
 						break;
 			// Output
-			case 'o':	//pgm(x, y, optarg);
+			case 'o':   pgm(x, y, "lala.txt");
 						printf("x: %d \ny: %d \nNombre Archivo: %s\n", x,
 								y, optarg);
 						finished = 1;
@@ -78,6 +78,6 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+
 	return EXIT_SUCCESS;
 }
