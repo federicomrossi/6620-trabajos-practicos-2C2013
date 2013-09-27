@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1380083657 source:/home/pablo/orgaCompus/6620-trabajos-practicos-2C2013/TP0/Codigo/main.c
+	<stdio.h>
+	"pgm.h"
+
+1380082241 /home/pablo/orgaCompus/6620-trabajos-practicos-2C2013/TP0/Codigo/pgp.h
+	<stdio.h>
+
+1380083424 source:/home/pablo/orgaCompus/6620-trabajos-practicos-2C2013/TP0/Codigo/pgp.c
+	"pgp.h"
+	<string.h>
+
+1380083614 /home/pablo/orgaCompus/6620-trabajos-practicos-2C2013/TP0/Codigo/pgm.h
+	<stdio.h>
+
+1380083843 source:/home/pablo/orgaCompus/6620-trabajos-practicos-2C2013/TP0/Codigo/pgm.c
+	"pgm.h"
+	<string.h>
+
