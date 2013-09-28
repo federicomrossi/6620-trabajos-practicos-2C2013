@@ -1,9 +1,9 @@
 /*
  ============================================================================
- Name         : OrgaCompus.c
+ Name         : tp0.c
  Authors      : Belen Beltran (91718)
- 	 	Federico Martin Rossi (92086)
- 	 	Pablo Rodriguez (93970)
+ 	 			Federico Martin Rossi (92086)
+ 	 			Pablo Rodriguez (93970)
  Version      : 1.0
  Description  : Programa de dibujo de tableros de Ajedrez en formato PGM
  ============================================================================
