@@ -155,14 +155,11 @@
 % Introducción
 \section{Introducción}
 	
-	En este trabajo presentamos la comparación entre dos algoritmos de ordenamiento:  el \textit{Bubblesort} y el \textit{Shellsort}.
+	En el presente trabajo se tiene como objetivo la familiarización con las herramientas de software que se utilizarán a lo largo de los siguientes trabajos prácticos, llevando a cabo la implementación de un programa que resuelve cierta problemática piloto detallada en los próximos apartados.
 	\par
-	Para realizar la comparación entre ambos se realizó la implementación en lenguaje C de cada uno. A su vez, para comparar la performance entre código de alto nivel y código nativo, se hizo la implementación de shellsort en assembler MIPS, con el fin de poder comparar los tiempos de ejecución de ambos programas.
+	La implementación se realizará en el lenguaje de programación C. Luego se ejecutará la aplicación sobre una plataforma \textit{NetBSD/MIPS-32} mediante el emulador \textit{GXEmul} \cite{GXEMUL}. Finalmente generaremos, mediante el compilador \textit{GCC} \cite{GCC}, el equivalente en assembler MIPS del código fuente en C.
 	\par
-	Todo el trabajo se realizo en una plataforma \textit{NetBSD/MIPS-32} mediante el \textit{GXEmul} \cite{GXEMUL}
-	\par
-	Todos los archivos y códigos fuente aquí mencionados, así como también el presente informe, pueden ser
-descargados de la sección Downloads del repositorio del grupo\footnote{URI del Repositorio: \url{https://code.google.com/p/tp-orga-computadoras/ }}.
+	Todos los archivos y códigos fuente aquí mencionados, así como también el presente informe, pueden ser descargados como un archivo comprimido ZIP del repositorio del grupo\footnote{URI del Repositorio: \url{https://github.com/federicomrossi/6620-trabajos-practicos-2C2013/tree/master/tp0}}.
 \bigskip
 
 
@@ -171,9 +168,9 @@ descargados de la sección Downloads del repositorio del grupo\footnote{URI del 
 % Compilación
 \section{Compilación}
 	
-	La herramienta para compilar tanto el código asembly como C será el \textit{GCC} \cite{GCC}. Para tratar de equiparar al máximo el \textit{S} generado por ambas implementaciones, se utilizará el flag de gcc ``-O0'' para que no realice optimizaciones sobre el código en lenguaje C.
+	La herramienta para compilar el código en lenguaje C será el \textit{GCC}. Para tratar de equiparar al máximo el \textit{S} generado por ambas implementaciones, se utilizará el flag de gcc ``-O0'' para que no realice optimizaciones sobre el código en lenguaje C.
 	\par
-	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make} . Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo \footnote{Los archivos se encuentran separados según la implemetación a la que pertenecen, por lo que habrán dos Makefiles distintos, uno para la implementación en lenguaje C y otro para la implementación en assembly}.
+	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo \footnote{Los archivos se encuentran separados según la implemetación a la que pertenecen, por lo que habrán dos Makefiles distintos, uno para la implementación en lenguaje C y otro para la implementación en assembly}.
 \bigskip
 
 
