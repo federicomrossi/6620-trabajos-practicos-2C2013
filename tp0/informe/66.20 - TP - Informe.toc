@@ -2,11 +2,9 @@
 \contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{1}
 \contentsline {section}{\numberline {2}Compilaci\IeC {\'o}n}{1}
 \contentsline {section}{\numberline {3}Utilizaci\IeC {\'o}n}{1}
-\contentsline {subsection}{\numberline {3.1}Implementaci\IeC {\'o}n en C}{1}
-\contentsline {subsection}{\numberline {3.2}Implementaci\IeC {\'o}n en Assembly}{1}
 \contentsline {section}{\numberline {4}Implementaciones}{1}
-\contentsline {subsection}{\numberline {4.1}Implementaci\IeC {\'o}n en C}{2}
-\contentsline {subsubsection}{\numberline {4.1.1}Algoritmo \textit {Bubblesort}}{2}
+\contentsline {subsection}{\numberline {4.1}Implementaci\IeC {\'o}n en C}{1}
+\contentsline {subsubsection}{\numberline {4.1.1}Algoritmo \textit {Bubblesort}}{1}
 \contentsline {subsubsection}{\numberline {4.1.2}Algoritmo \textit {Shellsort}}{2}
 \contentsline {subsection}{\numberline {4.2}Implementaci\IeC {\'o}n en Assembly}{3}
 \contentsline {subsubsection}{\numberline {4.2.1}Algoritmo \textit {Shellsort}}{3}

@@ -168,9 +168,9 @@
 % Compilación
 \section{Compilación}
 	
-	La herramienta para compilar el código en lenguaje C será el \textit{GCC}. Para tratar de equiparar al máximo el \textit{S} generado por ambas implementaciones, se utilizará el flag de gcc ``-O0'' para que no realice optimizaciones sobre el código en lenguaje C.
+	La herramienta para compilar el código en lenguaje C será el \textit{GCC}.
 	\par
-	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo \footnote{Los archivos se encuentran separados según la implemetación a la que pertenecen, por lo que habrán dos Makefiles distintos, uno para la implementación en lenguaje C y otro para la implementación en assembly}.
+	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo.
 \bigskip
 
 
@@ -179,13 +179,7 @@
 % Utilización
 \section{Utilización}
 	
-	En los siguientes apartados se especifica la forma en la que deben ser ejecutados los programas implementados tanto en C como en assembly.
-\medskip
-
-
-\subsection{Implementación en C}
-
-	El resultado de compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, que podrá ser invocado con los siguientes parámetros:
+	En los siguientes apartados se especifica la forma en la que debe ser ejecutado el programa implementado en lenguaje C. El resultado de la compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, que podrá ser invocado con los siguientes parámetros:
 \medskip
 
 \begin{itemize}
@@ -193,17 +187,10 @@
 \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
 	\item \textit{-h}:  Imprime ayuda para la utilización del programa;
 	\item \textit{-V}:  Imprimer la versión actual del programa;
-	\item \textit{-b [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo bubblersort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras;
-	\item \textit{-s [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo shellsort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras.
+	\item \textit{-r [Width]x[Height]}: Setea la resolución en píxeles del bitmap;
+	\item \textit{-o [Path]}: Especifica la ruta del archivo de salida sobre el cual se guarda el tablero generado por la aplicación.
 
-\end{itemize}	
-\medskip
-
-
-
-\subsection{Implementación en Assembly}
-
-	El resultado de compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, el cual aceptará un archivo de texto como argumento y lo ordenará con el algoritmo Shellsort.
+\end{itemize}
 \medskip
 
 
@@ -224,10 +211,8 @@
 \begin{itemize}
 
 \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textbf{tp0}: Programa principal responsable de interpretar los comandos pasados por la terminal de modo que realice las tareas solicitadas por el usuario. Su principal función es encadenar el funcionamiento de los otros módulos y mostrar por pantalla el resultado obtenido;
-	\item \textbf{fileloader}: Módulo encargado de levantar un archivo de texto desde el filesystem y convertirlo en un array donde cada posición es una palabra. Permite además dimensionar el tamaño en memoria necesario para cargar todo el archivo como un arreglo de palabras;
-	\item \textbf{bubblesort}: Módulo encargado de levantar un archivo de texto desde el filesystem y convertirlo en un array donde cada posición es una palabra. Permite además dimensionar el tamaño en memoria necesario para cargar todo el archivo como un arreglo de palabras;
-	\item \textbf{shellsort}: Módulo encargado de implementar el algoritmo de shellsort. Recibe como paramentros un arreglo de palabras desordenado y el tamaño del mismo. Como resultado devuelve dicho arreglo ordenado.
+	\item \textbf{tp0}: Programa principal responsable de interpretar los parámetros especificados a través de la terminal de modo de que realice las tareas solicitadas por el usuario. Su función es, de acuerdo al parámetro o los parámetros especificados, llevar a cabo la ejecución solicitada haciendo uso de módulos externos;
+	\item \textbf{pgm}: Módulo encargado de generar una imagen de un tablero de ajedrez (cuadrado, de ocho casilleros de lado) conforme a los parámetros ingresados. Se utiliza para ello el formato gráfico PGM o \textit{portable gray map}. De especificarse un archivo de salida, la imagen en formato PGM se almacenará en este medio.
 
 \end{itemize}	
 \medskip
