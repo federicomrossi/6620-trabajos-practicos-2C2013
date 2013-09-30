@@ -221,37 +221,31 @@
 % Algoritmo PGM
 \subsubsection{Algoritmo \textit{Pgm}}
 
-	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función Bubblesort, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
+	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función Pgm, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
 
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBSh,caption=``bubblesort.h'']{../Codigo/c/bubblesort.h} 
-% \bigskip
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBSh,caption=``pgm.h'']{../codigo/pgm.h} 
+\bigskip
 
 
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBSc,caption=``bubblesort.c'']{../Codigo/c/bubblesort.c} 
-% \bigskip\bigskip
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBSc,caption=``pgm.c'']{../codigo/pgm.c} 
+\bigskip\bigskip
 
 
 
 \newpage
 \subsection{Generación de código del algoritmo \textit{Pgm} en Assembly MIPS32}
 
-	A continuación se presenta el código en Assembly MIPS32 del algoritmo \texit{Pgm} generado automáticamente por el compilador \texit{GCC}. En el Apéndice A se encuentra el código en su totalidad.
+	A continuación se presenta el código en Assembly MIPS32 del algoritmo \texit{Pgm} generado automáticamente por el compilador \texit{GCC}. En el Apéndice A se encuentra el código del programa en su totalidad.
 	\medskip
 
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBSh,caption=``bubblesort.h'']{../Codigo/c/bubblesort.h} 
-% \bigskip
-
-
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBSc,caption=``bubblesort.c'']{../Codigo/c/bubblesort.c} 
-% \bigskip\bigskip
+% Código
+\lstset{ language = [mips]Assembler } % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeBSh,caption=``pgm.s'']{../codigo/pgm.s} 
+\bigskip\bigskip
 
 
 % Debugging
@@ -265,6 +259,8 @@
 
 % Pruebas
 \section{Pruebas}
+
+\subsection{Pruebas al ingreso y egreso de datos del programa}
 
 	A modo de prueba del programa, se ingresaron ciertos parámetros a éste y se analizó la salida obtenida. A continuación se presentan algunas pruebas realizadas y los resultados obtenidos.
 	\par
@@ -373,49 +369,15 @@ P2
 	\caption{Imágen del tablero de ajedrez en resolución 200x200.}
 \end{figure}
 \bigskip\bigskip
-	
 
 
-
-
-
+\subsection{Tiempos de ejecución}
 
 	\par
-	A cada ejecución se le midió el tiempo de procesamiento mediante el comando \textit{GNU ``time''} \cite{TIME}. A continuación un ejemplo de su utilización:
+	Se quiere medir el tiempo que tarda el programa en la máquina virtual MIPS32 en crear un tablero de ajedrez con ciertas características. Para ello se realizó un módulo aparte que, con la ayuda del comando \textit{GNU ``time''} \cite{TIME}, mide los tiempos de la realización de un tablero de resolución 1x1 hasta uno de 1000x1000. 
+	\par
+	Los datos obtenidos se volcaron en una tabla en el apéndice. A continuación se presenta un diagrama resumido de los tiempos obtenidos:
 \bigskip
-
-{\ttfamily\footnotesize
-\indent \$ time ./tp0 -b alice.txt\\}
-
-
-\noindent Esto imprimirá por pantalla el tiempo de ejecución que fue tabulado para cada caso. En el \textit{Cuadro 1} se muestran los valores de tiempo obtenidos.
-\bigskip\bigskip
-
-
-% Tabla 1
-\begin{table}[!hbt]
-	\begin{center}
-	\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
-		\hline
-		\rowcolor[gray]{0.9}\textbf{Archivo de texto} & \textbf{bubblesort.c [s] } & \textbf{shellsort.c [s] }  & \textbf{shellsort.S [s] }\\
-		\hline
-		\centering alice.txt & 571,715 & 2,207 & 1,035  \\
-		\hline
-		\centering beowulf.txt & 958,527 & 3,418 & 1,500  \\
-		\hline
-		\centering cyclopedia.txt & >3600 \textit{(timeout)} & 12,184 & 6,914   \\
-		\hline
-		\centering elquijote.txt & >3600 \textit{(timeout)} & 48,957 & 33,098  \\
-		\hline
-	\end{tabular}
-	\caption{Tiempos en segundos obtenidos en la ejecución\\ de los distintos algoritmos.}
-	\end{center}
-\end{table}
-\bigskip\bigskip
-
-
-	En los graficos que siguen se muestran distintas comparaciones hechas con estos datos obtenidos, los cuales nos llevarán a la conclusión final.
-\bigskip\bigskip
 
 % Figura 1
 \begin{figure}[h]
@@ -425,16 +387,8 @@ P2
 	\caption{Gráfico de tiempo insumido (en segundos)  contra el\\ tamaño de la muestra (cantidad de palabras)}
 \end{figure}
 
-\newpage
-% Figura 1
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/imagen02.png}
-	\medskip
-	\caption{Gráfico del speedup del Bubblesort contra Shellsort\\ para los diversos tamaños de archivo.}
-\end{figure}
-\bigskip\bigskip
 
+\newpage
 
 % Conclusiones
 \section{Conclusiones}
@@ -476,76 +430,62 @@ P2
 
 
 \subsection{\textit{tp0.c}. Implementación del main del programa}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeTP0cfull,caption=``tp0.c'']{../Codigo/c/tp0.c} 
-% \bigskip\bigskip
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeTP0cfull,caption=``tp0.c'']{../Codigo/c/tp0.c} 
+\bigskip\bigskip
 
-\subsection{\textit{bubblesort.h}. Declaración de la librería Bubblesort}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBShfull,caption=``bubblesort.h'']{../Codigo/c/bubblesort.h} 
-% \bigskip\bigskip
+\subsection{\textit{pgm.h}. Declaración de la librería Pgm}
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBShfull,caption=``pgm.h'']{../codigo/pgm.h} 
+\bigskip\bigskip
 
-\subsection{\textit{bubblesort.c}. Definición de la librería Bubblesort}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeBScfull,caption=``bubblesort.c'']{../Codigo/c/bubblesort.c} 
-% \bigskip\bigskip
-
-\subsection{\textit{shellsort.h}. Declaración de la librería Shellsort}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeSShfull,caption=``shellsort.h'']{../Codigo/c/shellsort.h} 
-% \bigskip\bigskip
-
-\subsection{\textit{shellsort.c}. Definición de la librería Shellsort}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeSScfull,caption=``shellsort.c'']{../Codigo/c/shellsort.c} 
-% \bigskip\bigskip
-
-\subsection{\textit{fileloader.h}. Declaración de la librería File Loader}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeFLhfull,caption=``fileloader.h'']{../Codigo/c/fileloader.h} 
-% \bigskip\bigskip
-
-\subsection{\textit{fileloader.c}. Definición de la librería File Loader}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeFLcfull,caption=``fileloader.c'']{../Codigo/c/fileloader.c} 
-% \bigskip\bigskip
-
+\subsection{\textit{pgm.c}. Definición de la librería Pgm}
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBScfull,caption=``pgm.c'']{../codigo/pgm.c} 
+\bigskip\bigskip
 
 
 
 % Implementación completa en assembly MIPS
-\section{Implementación completa de Shellsort en assembly MIPS}
+\section{Generación del código completo en assembly MIPS}
 
 
-\subsection{\textit{tp0.c}. Implementación del main del programa}
-% % Código
-% \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeTP0afull,caption=``tp0.c'']{../Codigo/assembly/tp0.c} 
+\subsection{\textit{tp0.s}. Generación del main del programa}
+% Código
+\lstset{ language = [mips]Assembler } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeTP0afull,caption=``tp0.s'']{../codigo/tp0.s} 
 \bigskip\bigskip
 
-\subsection{\textit{shellsort.S}. Implementación del algoritmo Shellsort}
-% % Código
-% \lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
-% \lstinputlisting[label=codeSSafull,caption=``shellsort.S'']{../Codigo/assembly/shellsort.S} 
+\subsection{\textit{pgm.s}. Generación del algoritmo Pgm}
+% Código
+\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeSSafull,caption=``pgm.s'']{../codigo/pgm.s} 
 \bigskip\bigskip
 
-\subsection{\textit{compare.S}. Implementación del comparador de palabras}
-% % Código
-% \lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
-% \lstinputlisting[label=codeCMPafull,caption=``compare.S'']{../Codigo/assembly/compare.S} 
-\bigskip\bigskip
-
-\subsection{\textit{swap.S}. Implementación del comparador de palabras}
-% % Código
-% \lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
-% \lstinputlisting[label=codeSWAPafull,caption=``swap.S'']{../Codigo/assembly/swap.S} 
+%Tabla con los datos de los tiempos que tarda la maquina MIPS en generar tableros de 1x1 hasta 1000x1000
+\section{Tabla de los tiempos obtenidos en la generación de los tableros}
+% Tabla 1
+\begin{table}[!hbt]
+	\begin{center}
+	\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+		\hline
+		\rowcolor[gray]{0.9}\textbf{Archivo de texto} & \textbf{bubblesort.c [s] } & \textbf{shellsort.c [s] }  & \textbf{shellsort.S [s] }\\
+		\hline
+		\centering alice.txt & 571,715 & 2,207 & 1,035  \\
+		\hline
+		\centering beowulf.txt & 958,527 & 3,418 & 1,500  \\
+		\hline
+		\centering cyclopedia.txt & >3600 \textit{(timeout)} & 12,184 & 6,914   \\
+		\hline
+		\centering elquijote.txt & >3600 \textit{(timeout)} & 48,957 & 33,098  \\
+		\hline
+	\end{tabular}
+	\caption{Tiempos en segundos obtenidos en la ejecución\\ de los distintos algoritmos.}
+	\end{center}
+\end{table}
 \bigskip\bigskip
 
 
