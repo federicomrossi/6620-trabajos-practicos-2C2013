@@ -1,0 +1,66 @@
+# 1x1
+
+real    0m0,051s
+user    0m0,016s
+sys     0m0,035s
+
+# 100x100
+
+real    0m0,316s
+user    0m0,297s
+sys     0m0,020s
+
+# 200x200
+
+real    0m1,148s
+user    0m1,121s
+sys     0m0,023s
+
+# 300x300
+
+real    0m2,500s
+user    0m2,469s
+sys     0m0,031s
+
+# 400x400
+
+real    0m4,434s
+user    0m4,371s
+sys     0m0,063s
+
+# 500x500
+
+real    0m6,844s
+user    0m6,777s
+sys     0m0,066s
+
+# 600x600
+
+real    0m9,848s
+user    0m9,797s
+sys     0m0,039s
+
+# 700x700
+
+real    0m13,500s
+user    0m13,406s
+sys     0m0,094s
+
+
+# 800x800
+
+real    0m17,449s
+user    0m17,343s
+sys     0m0,098s
+
+# 900x900
+
+real    0m22,152s
+user    0m21,972s
+sys     0m0,160s
+
+# 1000x1000
+
+real    0m27,613s
+user    0m27,160s
+sys     0m0,426s

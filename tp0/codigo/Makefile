@@ -9,7 +9,7 @@ tp0: pgm.o tp0.o
 	$(CC) $(FLAGS) pgm.o tp0.o -o tp0
 
 asm: 
-	$(CC) -S tp0.s pgm.s
+	$(CC) -S tp0.c pgm.c
 
 tp0.o: pgm.h tp0.c
 	$(CC) $(FLAGS) -c tp0.c -o tp0.o

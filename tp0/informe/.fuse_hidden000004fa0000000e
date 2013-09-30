@@ -1,0 +1,20 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {2}Compilaci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {3}Utilizaci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {4}Implementaci\IeC {\'o}n}{1}
+\contentsline {subsection}{\numberline {4.1}Implementaci\IeC {\'o}n en C}{1}
+\contentsline {subsubsection}{\numberline {4.1.1}Algoritmo \textit {Pgm}}{2}
+\contentsline {subsection}{\numberline {4.2}Generaci\IeC {\'o}n de c\IeC {\'o}digo del algoritmo \textit {Pgm} en Assembly MIPS32}{3}
+\contentsline {section}{\numberline {5}Debugging}{6}
+\contentsline {section}{\numberline {6}Pruebas}{6}
+\contentsline {subsection}{\numberline {6.1}Pruebas al ingreso y egreso de datos del programa}{6}
+\contentsline {subsection}{\numberline {6.2}Tiempos de ejecuci\IeC {\'o}n}{8}
+\contentsline {section}{Appendices}{10}
+\contentsline {section}{\numberline {A}Implementaci\IeC {\'o}n completa en lenguaje C}{10}
+\contentsline {subsection}{\numberline {A.1}\textit {tp0.c}. Implementaci\IeC {\'o}n del main del programa}{10}
+\contentsline {subsection}{\numberline {A.2}\textit {pgm.h}. Declaraci\IeC {\'o}n de la librer\IeC {\'\i }a Pgm}{11}
+\contentsline {subsection}{\numberline {A.3}\textit {pgm.c}. Definici\IeC {\'o}n de la librer\IeC {\'\i }a Pgm}{11}
+\contentsline {section}{\numberline {B}Generaci\IeC {\'o}n del c\IeC {\'o}digo completo en assembly MIPS}{12}
+\contentsline {subsection}{\numberline {B.1}\textit {tp0.s}. Generaci\IeC {\'o}n del main del programa}{12}
+\contentsline {subsection}{\numberline {B.2}\textit {pgm.s}. Generaci\IeC {\'o}n del algoritmo Pgm}{16}

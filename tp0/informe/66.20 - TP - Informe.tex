@@ -179,7 +179,7 @@
 % Utilización
 \section{Utilización}
 	
-	En los siguientes apartados se especifica la forma en la que debe ser ejecutado el programa implementado en lenguaje C. El resultado de la compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, que podrá ser invocado con los siguientes parámetros:
+	Veamos ahora la forma en la que debe ser ejecutado el programa implementado en lenguaje C. El resultado de la compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, que podrá ser invocado con los siguientes parámetros:
 \medskip
 
 \begin{itemize}
@@ -194,12 +194,27 @@
 \medskip
 
 
+	Entonces, si se desea generar un tablero con una resolución de 100x100 píxeles sobre el archivo de nombre imagen.pgm, debe ejecutarse el comando de la siguiente manera:
+	\bigskip
+
+	{\ttfamily\footnotesize
+	\$ ./tp0  -r 100x100 -o imagen.pgm\\}
+
+	En caso de no desear generar un archivo, y solo se espera ver el contenido del archivo por salida estándar, debe ejecutarse el comando de la siguiente manera:
+	\bigskip
+
+	{\ttfamily\footnotesize
+	\$ ./tp0  -r 100x100 -o -\\}
+\medskip
+
+
 
 
 % Implementación
 \section{Implementación}
 	
 	En lo que sigue de la sección, se presentarán los códigos fuente de la implementación del algoritmo. Aquellos lectores interesados en la implementación completa del programa, pueden dirigirse al apéndic ubicado al final del presente informe.
+\bigskip
 
 
 
@@ -210,23 +225,23 @@
 
 \begin{itemize}
 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=2pt \parsep=0pt
 	\item \textbf{tp0}: Programa principal responsable de interpretar los parámetros especificados a través de la terminal de modo de que realice las tareas solicitadas por el usuario. Su función es, de acuerdo al parámetro o los parámetros especificados, llevar a cabo la ejecución solicitada haciendo uso de módulos externos;
 	\item \textbf{pgm}: Módulo encargado de generar una imagen de un tablero de ajedrez (cuadrado, de ocho casilleros de lado) conforme a los parámetros ingresados. Se utiliza para ello el formato gráfico PGM o \textit{portable gray map}. De especificarse un archivo de salida, la imagen en formato PGM se almacenará en este medio.
 
 \end{itemize}	
-\medskip
+\bigskip
 
 
 % Algoritmo PGM
 \subsubsection{Algoritmo \textit{Pgm}}
 
-	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función Pgm, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
+	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función \textit{pgm()}, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
 
 % Código
 \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
 \lstinputlisting[label=codeBSh,caption=``pgm.h'']{../codigo/pgm.h} 
-\bigskip
+\medskip
 
 
 % Código
@@ -236,23 +251,24 @@
 
 
 
-\newpage
+
 \subsection{Generación de código del algoritmo \textit{Pgm} en Assembly MIPS32}
 
-	A continuación se presenta el código en Assembly MIPS32 del algoritmo \texit{Pgm} generado automáticamente por el compilador \texit{GCC}. En el Apéndice A se encuentra el código del programa en su totalidad.
+	A continuación se presenta el código en Assembly MIPS32 del algoritmo \textit{Pgm} generado automáticamente por el compilador \textit{GCC}. En el \textit{Apéndice A}	 se encuentra el código del programa en su totalidad.
 	\medskip
 
 % Código
 \lstset{ language = [mips]Assembler } % Cambiamos el lenguaje para que parsee en MIPS
-\lstinputlisting[label=codeBSh,caption=``pgm.s'']{../codigo/pgm.s} 
+\lstinputlisting[label=codeBShs,caption=``pgm.s'']{../codigo/pgm.s} 
 \bigskip\bigskip
+
 
 
 % Debugging
 \section{Debugging}
 	
-	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir del algorirmo pgm. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
-\bigskip
+	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir del algorirmo \textit{pgm}. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
+\bigskip\bigskip
 
 
 
@@ -261,112 +277,118 @@
 \section{Pruebas}
 
 \subsection{Pruebas al ingreso y egreso de datos del programa}
+\medskip
 
 	A modo de prueba del programa, se ingresaron ciertos parámetros a éste y se analizó la salida obtenida. A continuación se presentan algunas pruebas realizadas y los resultados obtenidos.
 	\par
-	El primer caso consiste en crear un tablero de resolución 11x16 y que el resultado sea enviado a salida standard. Se debe ingresar por consola lo siguiente:
-	\smallskip
+	El primer caso consiste en crear un tablero de resolución 11x16 y que el resultado sea enviado a la salida estandar. Se debe ingresar por consola lo siguiente:
+	\bigskip
 
 {\ttfamily\footnotesize
 \indent \$ ./tp0 -r 11x16 -o -\\}
 \smallskip
 
 	La salida del programa es la siguiente:
+	\bigskip
 
-\begin{center}
-P2
-# -
-11 16
-1
-1 1 0 0 1 1 0 1 0 1 0 
-1 1 0 0 1 1 0 1 0 1 0 
-0 0 1 1 0 0 1 0 1 0 1 
-0 0 1 1 0 0 1 0 1 0 1 
-1 1 0 0 1 1 0 1 0 1 0 
-1 1 0 0 1 1 0 1 0 1 0 
-0 0 1 1 0 0 1 0 1 0 1 
-0 0 1 1 0 0 1 0 1 0 1 
-1 1 0 0 1 1 0 1 0 1 0 
-1 1 0 0 1 1 0 1 0 1 0 
-0 0 1 1 0 0 1 0 1 0 1 
-0 0 1 1 0 0 1 0 1 0 1 
-1 1 0 0 1 1 0 1 0 1 0 
-1 1 0 0 1 1 0 1 0 1 0 
-0 0 1 1 0 0 1 0 1 0 1 
-0 0 1 1 0 0 1 0 1 0 1 
-\end{center}
-\bigskip\bigskip
+{\ttfamily\footnotesize
+	\indent P2 \\
+	\indent \# - \\
+	\indent 11 16 \\
+	\indent 1 \\
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
+}
+\bigskip
 
-	\par
-	La segunda prueba consiste en crear un tablero de resolución 16x11 y también enviar la salida a consola. Se debe ingresar por consola:
-	\smallskip
+
+	La segunda prueba consiste en crear un tablero de resolución 16x11 y también enviar la salida a consola. Se debe ingresar por la línea de comandos:
+	\bigskip
 
 {\ttfamily\footnotesize
 \indent \$ ./tp0 -r 16x11 -o -\\}
 \smallskip
 
 	La salida del programa es la siguiente:
+	\bigskip
 
-\begin{center}
-P2
-# -
-16 11
-1
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
-0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
-1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
-0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1  
-\end{center}
-\bigskip\bigskip
+{\ttfamily\footnotesize
+	\indent P2 \\
+	\indent \# - \\
+	\indent 16 11 \\
+	\indent 1 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
+	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
+	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
+	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
+}
+\bigskip
 
-	\par
+
 	La tercer prueba consiste en generar el tablero de tamaño default 8x8 (se genera en caso de no ingresar la opción -r), ingresando por consola:
-	\smallskip
+	\bigskip
 
 {\ttfamily\footnotesize
 \indent \$ ./tp0 -o -\\}
 \smallskip
 
 	El resultado del programa se ve por salida standard y es el siguiente:
+	\bigskip
 
-\begin{center}
-P2
-# -
-8 8
-1
-1 0 1 0 1 0 1 0 
-0 1 0 1 0 1 0 1 
-1 0 1 0 1 0 1 0 
-0 1 0 1 0 1 0 1 
-1 0 1 0 1 0 1 0 
-0 1 0 1 0 1 0 1 
-1 0 1 0 1 0 1 0 
-0 1 0 1 0 1 0 1 
-\end{center}
-\bigskip\bigskip
+{\ttfamily\footnotesize
+	\indent P2 \\
+	\indent \# - \\
+	\indent 8 8 \\
+	\indent 1 \\
+	\indent 1 0 1 0 1 0 1 0 \\
+	\indent 0 1 0 1 0 1 0 1 \\
+	\indent 1 0 1 0 1 0 1 0 \\
+	\indent 0 1 0 1 0 1 0 1 \\
+	\indent 1 0 1 0 1 0 1 0 \\
+	\indent 0 1 0 1 0 1 0 1 \\
+	\indent 1 0 1 0 1 0 1 0 \\
+	\indent 0 1 0 1 0 1 0 1 \\
+}
+\bigskip
 
-	\par
+
 	Una prueba más interesante, es aquella en la cual la resolución permite ver una imagen bastante amplia. En este caso se considera una resolución de 200x200 y se decide guardar la salida en un archivo. Se debe ingresar por consola:
-	\smallskip
+	\bigskip
 
 {\ttfamily\footnotesize
 \indent \$ ./tp0 -r 200x200 -o 200x200.pgm\\}
 \smallskip
 
-	La salida en formato imagen \textit{PGM}, es la siguiente:
+	La salida en formato de imagen \textit{PGM} se muestra en la \textit{Figura 1}.
 
+
+\newpage
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/200x200.pgm}
+	\includegraphics[width=0.36\textwidth]{images/200x200.jpg}
 	\medskip
-	\caption{Imágen del tablero de ajedrez en resolución 200x200.}
+	\caption{Imágen del tablero de ajedrez con resolución de 200x200 píxeles.}
 \end{figure}
 \bigskip\bigskip
 
@@ -376,29 +398,58 @@ P2
 	\par
 	Se quiere medir el tiempo que tarda el programa en la máquina virtual MIPS32 en crear un tablero de ajedrez con ciertas características. Para ello se realizó un módulo aparte que, con la ayuda del comando \textit{GNU ``time''} \cite{TIME}, mide los tiempos de la realización de un tablero de resolución 1x1 hasta uno de 1000x1000. 
 	\par
-	Los datos obtenidos se volcaron en una tabla en el apéndice. A continuación se presenta un diagrama resumido de los tiempos obtenidos:
-\bigskip
+	Los datos obtenidos se pueden observar en el \textit{Cuadro 1}. 
+	\bigskip\bigskip
 
-% Figura 1
+
+% Tabla 1
+\begin{table}[!hbt]
+	\begin{center}
+	\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+		\hline
+		\rowcolor[gray]{0.9}\textbf{Resolución} & \textbf{Tiempo de ejecución [s]}\\
+		\hline
+		\centering 1x1 & 0,051 \\
+		\hline
+		\centering 100x100 & 0,316 \\
+		\hline
+		\centering 200x200 & 1,148 \\
+		\hline
+		\centering 300x300 & 2,5 \\
+		\hline
+		\centering 400x400 & 4,434 \\
+		\hline
+		\centering 500x500 & 6,844 \\
+		\hline
+		\centering 600x600 & 9,848 \\
+		\hline
+		\centering 700x700 & 13,5 \\
+		\hline
+		\centering 800x800 & 17,449 \\
+		\hline
+		\centering 900x900 & 22,152 \\
+		\hline
+		\centering 1000x1000 & 27,613 \\
+		\hline
+	\end{tabular}
+	\smallskip
+	\caption{Tiempos en segundos obtenidos en la ejecución\\ del programa para distintas resoluciones.}
+	\end{center}
+\end{table}
+\bigskip\bigskip
+
+
+	En la \textit{Figura 2} se presenta un diagrama resumido de los tiempos de ejecución obtenidos. Como es de esperar, se obtiene una curva cuadrática.
+
+
+\newpage	
+% Figura 2
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/imagen01.png}
-	\medskip
-	\caption{Gráfico de tiempo insumido (en segundos)  contra el\\ tamaño de la muestra (cantidad de palabras)}
+	\includegraphics[width=1.0\textwidth]{images/grafico-tiempos.jpg}
+	\caption{Gráfico de tiempo de ejecución (en segundos) respecto\\ de la resolución de imagen generada.}
 \end{figure}
-
-
-\newpage
-
-% Conclusiones
-\section{Conclusiones}
-
-	Al realizar la comparación entre los algoritmos bubblesort y shellsort en C, vemos que la diferencia entre ambos es notable. Estamos hablando de varios ordenes de maginitud.
-	\par
-	Esto se debe a que por su codigo bubblesort tiene un coste de O($n^2$) mientras que si bien no podemos determinarlo fácilmente para shellsort, ya que depende mucho del gap elegido, estamos hablando de algo cercano a O($n log(n)$). Esto hace que para textos grandes no sea una opción viable la utilización de bubblesort, mientras que shellsort prueba ser muy eficiente y el esfuerzo de codificación no es demsiado grande.
-	\par
-	En cuanto a la comparación de assembler y C, notamos una ligera ventaja del primero. Creemos que esto se debe a que muchas de las cosas que el algoritmo en C utiliza como variables en memoria principal, assembler utiliza registros los cuales presentan un tiempo de lecto/escritura notablemente menor.
-\bigskip\bigskip
+\bigskip\bigskip\bigskip
 
 
 
@@ -411,6 +462,8 @@ P2
 	\bibitem{GCC} GCC, the GNU Compiler Collection, \url{http://gcc.gnu.org/}
 
 	\bibitem{BS} PGM format speciffication, \url{http://netpbm.sourceforge.net/doc/pgm.html}
+
+	\bibitem{TIME} time man page, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?time}
 
 	\bibitem{HEN00} J. L. Hennessy and D. A. Patterson, ``Computer Architecture. A Quantitative
 	Approach,'' 4th Edition, Morgan Kaufmann Publishers, 2000.
@@ -432,7 +485,7 @@ P2
 \subsection{\textit{tp0.c}. Implementación del main del programa}
 % Código
 \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-\lstinputlisting[label=codeTP0cfull,caption=``tp0.c'']{../Codigo/c/tp0.c} 
+\lstinputlisting[label=codeTP0cfull,caption=``tp0.c'']{../codigo/tp0.c} 
 \bigskip\bigskip
 
 \subsection{\textit{pgm.h}. Declaración de la librería Pgm}
@@ -463,29 +516,6 @@ P2
 % Código
 \lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
 \lstinputlisting[label=codeSSafull,caption=``pgm.s'']{../codigo/pgm.s} 
-\bigskip\bigskip
-
-%Tabla con los datos de los tiempos que tarda la maquina MIPS en generar tableros de 1x1 hasta 1000x1000
-\section{Tabla de los tiempos obtenidos en la generación de los tableros}
-% Tabla 1
-\begin{table}[!hbt]
-	\begin{center}
-	\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
-		\hline
-		\rowcolor[gray]{0.9}\textbf{Archivo de texto} & \textbf{bubblesort.c [s] } & \textbf{shellsort.c [s] }  & \textbf{shellsort.S [s] }\\
-		\hline
-		\centering alice.txt & 571,715 & 2,207 & 1,035  \\
-		\hline
-		\centering beowulf.txt & 958,527 & 3,418 & 1,500  \\
-		\hline
-		\centering cyclopedia.txt & >3600 \textit{(timeout)} & 12,184 & 6,914   \\
-		\hline
-		\centering elquijote.txt & >3600 \textit{(timeout)} & 48,957 & 33,098  \\
-		\hline
-	\end{tabular}
-	\caption{Tiempos en segundos obtenidos en la ejecución\\ de los distintos algoritmos.}
-	\end{center}
-\end{table}
 \bigskip\bigskip
 
 
