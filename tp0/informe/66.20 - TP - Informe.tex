@@ -197,9 +197,9 @@
 
 
 % Implementación
-\section{Implementaciones}
+\section{Implementación}
 	
-	En lo que sigue de la sección, se presentarán los códigos fuente de las implementaciones de los algoritmos. Aquellos lectores interesados en la implementación completa de los dos programas, pueden dirigirse a los apéndices ubicados al final del presente informe. Recordamos que se han separado las implementaciones en dos de manera de poder mantener un orden entre ambos.
+	En lo que sigue de la sección, se presentarán los códigos fuente de la implementación del algoritmo. Aquellos lectores interesados en la implementación completa del programa, pueden dirigirse al apéndic ubicado al final del presente informe.
 
 
 
@@ -218,8 +218,8 @@
 \medskip
 
 
-% Algoritmo Bubblesort 
-\subsubsection{Algoritmo \textit{Bubblesort}}
+% Algoritmo PGM
+\subsubsection{Algoritmo \textit{Pgm}}
 
 	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función Bubblesort, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
 
@@ -236,67 +236,28 @@
 
 
 
+\newpage
+\subsection{Generación de código del algoritmo \textit{Pgm} en Assembly MIPS32}
 
-% Algoritmo Shellsort
-\subsubsection{Algoritmo \textit{Shellsort}}
-
-	En el \refcode{codeSSh} se muestra el header de la librería, donde se declara la función Shellsort, mientras que en el \refcode{codeSSc} se muestra la definición de la librería.
+	A continuación se presenta el código en Assembly MIPS32 del algoritmo \texit{Pgm} generado automáticamente por el compilador \texit{GCC}. En el Apéndice A se encuentra el código en su totalidad.
+	\medskip
 
 % % Código
 % \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeSSh,caption=``shellsort.h'']{../Codigo/c/shellsort.h} 
+% \lstinputlisting[label=codeBSh,caption=``bubblesort.h'']{../Codigo/c/bubblesort.h} 
 % \bigskip
 
 
 % % Código
 % \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-% \lstinputlisting[label=codeSSc,caption=``shellsort.c'']{../Codigo/c/shellsort.c} 
-\bigskip\bigskip
-
-
-
-
-\newpage
-\subsection{Implementación en Assembly}
-
-	La implementación del programa fue divida en los siguientes módulos:
-	\medskip
-
-\begin{itemize}
-
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textbf{tp0}: Solamente recibe un texto como argumento por linea de comandos y lo imprime ordenandolo mediante shellsort. Esta implementado en C;
-	\item \textbf{fileloader}: Se utiliza el mismo de la otra implementación;
-	\item \textbf{swap}: Función implementada en assembler para intercambiar el valor de dos registros recibidos como parametros;
-	\item \textbf{compare}: Función similar a strcmp de C. Recibe dos argumentos de tipo texto y decide cual es el que precede alfabeticamente.
-	\item \textbf{shellsort}: Implementación en assembler del algoritmo de ordenamiento.
-
-\end{itemize}	
-\medskip
-
-
-
-
-% Algoritmo Shellsort
-\subsubsection{Algoritmo \textit{Shellsort}}
-
-	En el \refcode{codeSSaMED} se muestra la implementación en assembly del algoritmo Shellsort.
-
-% % Código
-% \lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
-% \lstinputlisting[label=codeSSaMED,caption=``shellsort.S'']{../Codigo/assembly/shellsort.S} 
-% \bigskip\bigskip\medskip
-
-
+% \lstinputlisting[label=codeBSc,caption=``bubblesort.c'']{../Codigo/c/bubblesort.c} 
+% \bigskip\bigskip
 
 
 % Debugging
 \section{Debugging}
 	
-	Para analizar el correcto funcionamiento de los programas se crearon programas adhoc que fueran corroborando el correcto funcionamiento de cada uno de los modulos de manera individual. La idea era simular el concepto de test unitario de lenguajes de alto nivel.
-	\par
-	Una vez que todos los módulos funcionaban de la manera esperada, se utilizó el programa principal como test de integración.
-Finalmente se utilizó la herramienta \textit{Valgrind} para realizar un análisis minucioso del uso de memoria, corrigiendo así las pérdidas de memoria que se presentaban en cada módulo.
+	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir del algorirmo pgm. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
 \bigskip
 
 
@@ -305,7 +266,120 @@ Finalmente se utilizó la herramienta \textit{Valgrind} para realizar un anális
 % Pruebas
 \section{Pruebas}
 
-	Para realizar las pruebas de cada algoritmo se procesaron cuatro textos provistos por la cátedra. Estos son ``\textit{Alicia en el País de las Maravillas}'' (173kB), ``\textit{Beowulf}'' (220kB), una ``\textit{Enciclopedia}'' (643kB) y ``\textit{Don Quijote}'' (2147kB).
+	A modo de prueba del programa, se ingresaron ciertos parámetros a éste y se analizó la salida obtenida. A continuación se presentan algunas pruebas realizadas y los resultados obtenidos.
+	\par
+	El primer caso consiste en crear un tablero de resolución 11x16 y que el resultado sea enviado a salida standard. Se debe ingresar por consola lo siguiente:
+	\smallskip
+
+{\ttfamily\footnotesize
+\indent \$ ./tp0 -r 11x16 -o -\\}
+\smallskip
+
+	La salida del programa es la siguiente:
+
+\begin{center}
+P2
+# -
+11 16
+1
+1 1 0 0 1 1 0 1 0 1 0 
+1 1 0 0 1 1 0 1 0 1 0 
+0 0 1 1 0 0 1 0 1 0 1 
+0 0 1 1 0 0 1 0 1 0 1 
+1 1 0 0 1 1 0 1 0 1 0 
+1 1 0 0 1 1 0 1 0 1 0 
+0 0 1 1 0 0 1 0 1 0 1 
+0 0 1 1 0 0 1 0 1 0 1 
+1 1 0 0 1 1 0 1 0 1 0 
+1 1 0 0 1 1 0 1 0 1 0 
+0 0 1 1 0 0 1 0 1 0 1 
+0 0 1 1 0 0 1 0 1 0 1 
+1 1 0 0 1 1 0 1 0 1 0 
+1 1 0 0 1 1 0 1 0 1 0 
+0 0 1 1 0 0 1 0 1 0 1 
+0 0 1 1 0 0 1 0 1 0 1 
+\end{center}
+\bigskip\bigskip
+
+	\par
+	La segunda prueba consiste en crear un tablero de resolución 16x11 y también enviar la salida a consola. Se debe ingresar por consola:
+	\smallskip
+
+{\ttfamily\footnotesize
+\indent \$ ./tp0 -r 16x11 -o -\\}
+\smallskip
+
+	La salida del programa es la siguiente:
+
+\begin{center}
+P2
+# -
+16 11
+1
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
+0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
+1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 
+0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1  
+\end{center}
+\bigskip\bigskip
+
+	\par
+	La tercer prueba consiste en generar el tablero de tamaño default 8x8 (se genera en caso de no ingresar la opción -r), ingresando por consola:
+	\smallskip
+
+{\ttfamily\footnotesize
+\indent \$ ./tp0 -o -\\}
+\smallskip
+
+	El resultado del programa se ve por salida standard y es el siguiente:
+
+\begin{center}
+P2
+# -
+8 8
+1
+1 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 
+1 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 
+1 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 
+1 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 
+\end{center}
+\bigskip\bigskip
+
+	\par
+	Una prueba más interesante, es aquella en la cual la resolución permite ver una imagen bastante amplia. En este caso se considera una resolución de 200x200 y se decide guardar la salida en un archivo. Se debe ingresar por consola:
+	\smallskip
+
+{\ttfamily\footnotesize
+\indent \$ ./tp0 -r 200x200 -o 200x200.pgm\\}
+\smallskip
+
+	La salida en formato imagen \textit{PGM}, es la siguiente:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/200x200.pgm}
+	\medskip
+	\caption{Imágen del tablero de ajedrez en resolución 200x200.}
+\end{figure}
+\bigskip\bigskip
+	
+
+
+
+
+
+
 	\par
 	A cada ejecución se le midió el tiempo de procesamiento mediante el comando \textit{GNU ``time''} \cite{TIME}. A continuación un ejemplo de su utilización:
 \bigskip
