@@ -17,13 +17,13 @@ void heap(char* words[],int raiz, int fin){
     int hijo;
     while (raiz*2+1 <= fin && !finished){
         //Elijo el hijo mayor
-        if(raiz*2+1==fin || strcmp(words[raiz*2+1],words[raiz*2+2]) > 0 ){
+        if(raiz*2+1==fin || strcasecmp(words[raiz*2+1],words[raiz*2+2]) > 0 ){
             hijo=raiz*2+1;
         }else{
             hijo=raiz*2+2;
         }
         //Checkeo si es mayor e intercambio
-        if(strcmp(words[raiz],words[hijo]) < 0){
+        if(strcasecmp(words[raiz],words[hijo]) < 0){
             tmp=words[raiz];
             words[raiz]=words[hijo];
             words[hijo]=tmp;
@@ -46,7 +46,7 @@ void heapsort(char* words[], int arraysize){
     char* tmp;
     //Armo Heap
     for (i=(arraysize/2)-1;i>=0;i--){
-        heap(words,i,arraysize);
+        heap(words,i,arraysize-1);
     }
 
     //Extraigo raiz y armo heap

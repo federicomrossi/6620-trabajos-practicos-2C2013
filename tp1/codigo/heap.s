@@ -32,12 +32,13 @@ loop:	#comparacion de while. No hago la comp de finished, Break instead
 	jal strcmp
 	#recupero los temp necesarios
 	lw $a1, 44($sp)
-	sll $t2, $a1, 1
 	blt $v0, $0, if
 	#hago el else
+	sll $t2, $a1, 1
 	addiu $t2, $t2, 2
 	j fi 	
 if:	#hago el if
+	sll $t2, $a1, 1
 	addi $t2, $t2, 1	
 fi:	#Guardo los tmp necesarios
 	sw $t2, 16($sp)
@@ -47,7 +48,7 @@ fi:	#Guardo los tmp necesarios
 	addu $t3, $a0, $t2
 	addu $t4, $a0, $a1
 	lw $a0, 0($t4)
-	lw $a1, 0($t5) 
+	lw $a1, 0($t3) 
 	#llamo a strcmp
 	jal strcmp
 	bgt $v0, $0, if2
@@ -74,9 +75,9 @@ if2:	#hago el if
 	j loop
 fin_loop:
 	#destruyo el stack
-	lw $ra, 24($sp)
-	lw $fp, 20($sp)
-	lw $gp, 16($sp)
+	lw $ra, 32($sp)
+	lw $fp, 28($sp)
+	lw $gp, 24($sp)
 	addiu $sp, $sp, 32
 	j $ra
 	
