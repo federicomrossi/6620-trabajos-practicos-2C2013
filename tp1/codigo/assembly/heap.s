@@ -1,3 +1,9 @@
+#ifndef USE_MIPS_ASSEMBLY
+#define USE_MIPS_ASSEMBLY
+#include <mips/regdef.h>
+#include <sys/syscall.h>
+
+
 .text
 .align 2
 .globl heap
