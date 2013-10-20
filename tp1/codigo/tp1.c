@@ -17,8 +17,8 @@
 #include "heapsort.h"
 
 int main(int argc, char* argv[]) {
-    char* palabras[]={"hola","pablo","belu","fede"};
-    int size=4;
+    char* palabras[]={"hola","pablo","belu","fede","jejej","racing"};
+    int size=6;
     int i;
     heapsort(palabras,size);
     for(i=0;i<size;i++){
