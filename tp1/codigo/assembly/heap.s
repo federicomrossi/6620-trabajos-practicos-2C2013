@@ -89,3 +89,4 @@ fin_loop:
 	addiu $sp, $sp, 40
 	j $ra
 	
+#endif
