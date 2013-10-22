@@ -26,8 +26,6 @@ strcmpi:		subu sp, sp, 8 # Se crea el SRA 8 y LTA 0 y ABA 0 = 8 bytes
 		        sw $30, 4(sp)
 		        sw gp, 0(sp)
 		        move $30, sp
-#		        lw a0, 8(sp) # Se guarda el primer argumento, el puntero al array 'a'
-#		        lw a1, 12(sp) # Se guarda el segundo argumento, el puntero al array 'b'
 
 		        addu t1, zero, zero # Se setea i = 0
 
@@ -71,7 +69,7 @@ terminoA:		beq t3, zero, salirIguales # Si 'b' termina, se trata de dos cadenas 
 terminoB:		beq t2, zero, salirIguales # Si 'a' termina, se trata de dos cadenas iguales
 				b salirDistintas # Sino, se trata de cadenas diferentes
 
-salirDistintas:	addiu v0, zero, 1 # Se devuelve un 1
+salirDistintas:	sub v0, t2, t3 # Se devuelve el valor de restar (a - b)
 				b salir
 
 salirIguales:	addu v0, zero, zero # Se devuelve un 0
