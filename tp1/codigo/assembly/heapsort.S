@@ -63,7 +63,8 @@ FOR_2:		beq		s2,zero,FOR_2_FIN		# Si i = 0 saltamos a FOR_2_FIN
 			lw 		s3,0(s0)				# tmp = words[0]
 			sll 	t1,s2,2 				# t1 = i * 4
 			add 	t1,t1,s0				# t1 = words[i]
-			sw		t1,0(s0)				# words[0] = words[i]
+			lw		t2,0(t1)				# t2 = dato words[i]
+			sw		t2,0(s0)				# words[0] = words[i]
 			sw 		s3,0(t1)				# words[i] = tmp
 
 			add 	a0,s0,zero				# Cargamos words en a0
