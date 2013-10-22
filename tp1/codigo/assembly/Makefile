@@ -3,7 +3,13 @@ FLAGS=-std=gnu99
 CLEAN=rm
 
 
-all: tp1
+all: gen
+
+gen:
+	gcc -g -c heap.S -o heap.o
+	gcc -g -c heapsort.S -o heapsort.o
+	gcc -g -c tp1.c -o tp1.o
+	gcc -g heap.o heapsort.o tp1.o -o tp1
 
 tp1: bubblesort.o heapsort.o tp1.o
 	$(CC) $(FLAGS) bubblesort.o heapsort.o tp1.o -o tp1
@@ -22,3 +28,7 @@ heap.o:
 
 clean:
 	rm *.o tp1
+
+
+
+

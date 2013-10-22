@@ -42,7 +42,7 @@ heapsort:	subu	sp,sp,56				# Creamos stack frame.
 			move	s1,a1 					# arraysize
 
 			# Armamos el heap
-			srl 	t0,s1,2 				# t0 = arraysize / 2
+			srl 	t0,s1,1 				# t0 = arraysize / 2
 			subu	s2,t0,1 				# i = arraysize / 2 - 1			
 FOR_1:		slt 	t0,s2,zero				# ¿i es menor que 0?
 			bne		t0,zero,FOR_1_FIN		# Si t0 = 1 saltamos a FOR_1_FIN
@@ -61,6 +61,8 @@ FOR_1_FIN:	subu 	s2,s1,1 				# i = arraysize-1
 FOR_2:		beq		s2,zero,FOR_2_FIN		# Si i = 0 saltamos a FOR_2_FIN
 			
 			lw 		s3,0(s0)				# tmp = words[0]
+			sll 	t1,s2,2 				# t1 = i * 4
+			add 	t1,t1,s0				# t1 = words[i]
 			sw		t1,0(s0)				# words[0] = words[i]
 			sw 		s3,0(t1)				# words[i] = tmp
 
