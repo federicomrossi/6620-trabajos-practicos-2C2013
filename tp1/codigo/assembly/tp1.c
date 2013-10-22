@@ -10,11 +10,12 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdlib.h>
-#include "heapsort.h"
+// #include <stdlib.h>
+
+
+extern int heapsort(char **, size_t);
 
 int main(int argc, char* argv[]) {
     char* palabras[]={"hola","pablo","belu","fede","jejej","Racing"};
