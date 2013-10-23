@@ -30,9 +30,9 @@ strcmpi:		subu sp, sp, 8 # Se crea el SRA 8 y LTA 0 y ABA 0 = 8 bytes
 		        addu t1, zero, zero # Se setea i = 0
 
 recorrer: 		addu t5, t1, a0 # t5 <- direccion de a[i]
-				lb t2, 0(t5) # t2 <- a[i]
+				lbu t2, 0(t5) # t2 <- a[i]
 				addu t5, t1, a1 # t5 <- direccion de b[i]
-				lb t3, 0(t5) # t3 <- b[i]
+				lbu t3, 0(t5) # t3 <- b[i]
 
 				beq t2, zero, terminoA # Si 'a' termina, se analiza si 'b' tambien
 				beq t3, zero, terminoB # Si 'b' termina, se analiza si 'a' tambien
