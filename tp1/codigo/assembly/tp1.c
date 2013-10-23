@@ -9,11 +9,13 @@
  ============================================================================
  */
 
-#include "heapsort.h"
-#include "bubblesort.h"
+// #include "heapsort.h"
+// #include "bubblesort.h"
 #include <stdio.h>
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <string.h>
+
+ extern heapsort(char**, int);
 
 int main(int argc, char* argv[]) {
     char** palabras;
