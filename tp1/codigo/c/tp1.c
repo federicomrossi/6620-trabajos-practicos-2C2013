@@ -83,7 +83,7 @@ void ejecutarHeapsort(char* nombreArchivo) {
 	char** palabras = leerArchivo(nombreArchivo, &size);
 
 	/*Ordeno*/
-    heapsort(palabras,size);
+    heapsort_(palabras,size);
 	
 	/*Imprimo el resultado y libero memoria*/
     for(i=0;i<size;i++){
@@ -100,7 +100,7 @@ void ejecutarBubblesort(char* nombreArchivo) {
 	char** palabras = leerArchivo(nombreArchivo, &size);
 
 	/*Ordeno*/
-    bubblesort(palabras,size);
+    bubblesort_(palabras,size);
 	
 	/*Imprimo el resultado y libero memoria*/
     for(i=0;i<size;i++){
@@ -181,3 +181,4 @@ int main (int argc, char* argv[]) {
 
 	return 0;
  }
+ 
