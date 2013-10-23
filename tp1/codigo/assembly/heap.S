@@ -7,7 +7,7 @@
 .text
 .align 2
 .globl heap
-.extern strcmp
+.extern strcmpi
 
 heap: 
 	subu sp, sp, 40 #creo el SRA 16 y LTA 8 y ABA 16 = 40
@@ -34,7 +34,7 @@ loop:	#comparacion de while. No hago la comp de finished, Break instead
 	lw a0, 0(t5) #Cargo los parametros
 	lw a1, 0(t6)
 	#Llamo a la funcion el return value viene en v0
-	jal strcmp
+	jal strcmpi
 	#recupero los temp necesarios
 	lw a1, 44(sp)
 	lw a0, 40(sp)
@@ -56,7 +56,7 @@ fi:	#Guardo los tmp necesarios
 	lw a0, 0(t4)
 	lw a1, 0(t3) 
 	#llamo a strcmp
-	jal strcmp
+	jal strcmpi
 	blt v0, 0, if2
 	#recupero los tmp necesarios. No hay nada!
 	#hago el else
