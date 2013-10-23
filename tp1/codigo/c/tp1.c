@@ -28,7 +28,7 @@ char** leerArchivo(char* sourceName, int* cant) {
 	char** palabras;
 
 	/* Cargo el archivo a memoria*/	
-	palabras = malloc(tamano*sizeof(char*));
+	palabras = (char**)malloc(tamano*sizeof(char*));
 
 	// Se toma '-' como stdin
 	if (sourceName[0] == '-')
@@ -39,16 +39,22 @@ char** leerArchivo(char* sourceName, int* cant) {
 
 	fscanf(sourcefd, "%s", word);
 	while (!feof(sourcefd)){
+		if (size >= tamano){
+			tamano += 200;
+			palabras = (char**)realloc(palabras, tamano*sizeof(char*));
+		}
 		tam = strlen(word) + 1;
+		if (palabras == NULL) {
+			printf("%s ", word);
+			printf("\n\nOhh ou\n\n");
+		}
 		palabras[size] = malloc(tam);
 		memcpy(palabras[size], word, tam);
 		size++;
-		if (size > tamano){
-			tamano += 200;
-			palabras = realloc(palabras, tamano*sizeof(char*));
-		}
 		fscanf(sourcefd, "%s", word);
 	}
+	// Debug
+	printf("Ultima pal: %s y cant de pal leidas: %d", word, size);
 	// Se cierra el archivo si corresponde
 	if (sourceName[0] != '-')
 		fclose(sourcefd);
