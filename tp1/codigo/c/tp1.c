@@ -128,6 +128,8 @@ int main (int argc, char* argv[]) {
 		fprintf(stderr, "ERROR: No hay suficientes argumentos\n");
 		return 1;
 	}
+	
+	char* sourceName = argv[1];
 
 	// Se toma '-' como stdin
     if (sourceName[0] == '-')
