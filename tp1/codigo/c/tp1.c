@@ -129,7 +129,7 @@ int main (int argc, char* argv[]) {
 		fprintf(stderr, "ERROR: No hay suficientes argumentos\n");
 		return 1;
 	}
-	
+
 	char* sourceName = argv[1];
 
 	// Se toma '-' como stdin
@@ -206,10 +206,11 @@ int main (int argc, char* argv[]) {
 	 }
 	 // Si hay argumentos que no son opciones, se buscan si nos nombres de archivo
 	if (optind < argc && !hayOpciones) {
-		printf ("No son opciones: ");
-		while (optind < argc)
-			printf ("%s ", argv[optind++]);
-		putchar ('\n');
+		char op[256];
+		while (optind < argc) {
+			sprintf(op, "cat %s", argv[optind++]);
+			system(op);
+		}
 	}
 
 	return 0;
