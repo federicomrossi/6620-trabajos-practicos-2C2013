@@ -115,7 +115,7 @@
 	\begin{center}
 		\huge{Trabajo Pŕactico N°1} \\
 		\medskip
-		\Huge \textit{``[TITULO DEL TP]''} \\
+		\Huge \textit{``Conjunto de instrucciones MIPS''} \\
 		
 		\bigskip\bigskip\bigskip\bigskip\bigskip
 
@@ -155,11 +155,12 @@
 % Introducción
 \section{Introducción}
 	
-	En el presente trabajo se tiene como objetivo la familiarización con las herramientas de software que se utilizarán a lo largo de los siguientes trabajos prácticos, llevando a cabo la implementación de un programa que resuelve cierta problemática piloto detallada en los próximos apartados.
+	En el presente trabajo se tiene como objetivo la comparación entre dos algoritmos de ordenamiento: el \textit{Bubblesort} y el \textit{Shellsort}.
+	Para realizar dicha comparación entre ambos se realizó la implementación en lenguaje C de cada uno de estos. A su vez, para comparar el rendimiento entre código de alto nivel y de código nativo, se desarrollo la implementación del Heapsort en assembly MIPS, con el fin de poder comparar los tiempos de ejecución de ambos programas y realizar así un estudio de las mejoras que se producen.
 	\par
-	La implementación se realizará en el lenguaje de programación C. Luego se ejecutará la aplicación sobre una plataforma \textit{NetBSD/MIPS-32} mediante el emulador \textit{GXEmul} \cite{GXEMUL}. Finalmente generaremos, mediante el compilador \textit{GCC} \cite{GCC}, el equivalente en assembler MIPS del código fuente en C.
+	La totalidad del trabajo se ha realizado en una plataforma \textit{NetBSD/MIPS-32} mediante el \textit{GXEmul} \cite{GXEMUL}.
 	\par
-	Todos los archivos y códigos fuente aquí mencionados, así como también el presente informe, pueden ser descargados como un archivo comprimido ZIP del repositorio del grupo\footnote{URI del Repositorio: \url{https://github.com/federicomrossi/6620-trabajos-practicos-2C2013/tree/master/tp0}}.
+	Todos los archivos y códigos fuente aquí mencionados, así como también el presente informe, pueden ser descargados como un archivo comprimido ZIP del repositorio del grupo\footnote{URI del Repositorio: \url{https://github.com/federicomrossi/6620-trabajos-practicos-2C2013/tree/master/tp1}}.
 \bigskip
 
 
@@ -168,9 +169,10 @@
 % Compilación
 \section{Compilación}
 	
-	La herramienta para compilar el código en lenguaje C será el \textit{GCC}.
+	
+	La herramienta para compilar tanto el código asembly como C será el \textit{GCC} \cite{GCC}. Para tratar de equiparar al máximo el \textit{S} generado por ambas implementaciones, se utilizará el flag de gcc ``-O0'' para que no realice optimizaciones sobre el código en lenguaje C.
 	\par
-	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo.
+	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo \footnote{Los archivos se encuentran separados según la implemetación a la que pertenecen, por lo que habrán dos Makefiles distintos, uno para la implementación en lenguaje C y otro para la implementación en assembly}.
 \bigskip
 
 
@@ -179,32 +181,32 @@
 % Utilización
 \section{Utilización}
 	
-	Veamos ahora la forma en la que debe ser ejecutado el programa implementado en lenguaje C. El resultado de la compilación con ``make'' será un programa ejecutable, de nombre \textit{tp0}, que podrá ser invocado con los siguientes parámetros:
-\medskip
-
-\begin{itemize}
-
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textit{-h}:  Imprime ayuda para la utilización del programa;
-	\item \textit{-V}:  Imprimer la versión actual del programa;
-	\item \textit{-r [Width]x[Height]}: Setea la resolución en píxeles del bitmap;
-	\item \textit{-o [Path]}: Especifica la ruta del archivo de salida sobre el cual se guarda el tablero generado por la aplicación.
-
-\end{itemize}
-\medskip
+	En los siguientes apartados se especifica la forma en la que deben ser ejecutados los programas implementados tanto en C como en assembly MIPS.
 
 
-	Entonces, si se desea generar un tablero con una resolución de 100x100 píxeles sobre el archivo de nombre imagen.pgm, debe ejecutarse el comando de la siguiente manera:
-	\bigskip
 
-	{\ttfamily\footnotesize
-	\$ ./tp0  -r 100x100 -o imagen.pgm\\}
+% Utilización - Implementación en C
+\subsection{Implementación en C}
 
-	En caso de no desear generar un archivo, y solo se espera ver el contenido del archivo por salida estándar, debe ejecutarse el comando de la siguiente manera:
-	\bigskip
+	El resultado de compilación utilizando el comando \textit{make} será un archivo ejecutable de nombre \textit{tp1}, que podrá ser invocado con los siguientes parámetros:
+	\medskip
 
-	{\ttfamily\footnotesize
-	\$ ./tp0  -r 100x100 -o -\\}
+	\begin{itemize}
+
+		\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+			\item \textit{-h}:  Imprime ayuda para la utilización del programa;
+			\item \textit{-V}:  Imprimer la versión actual del programa;
+			\item \textit{-b [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Bubblersort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras;
+			\item \textit{-s [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Heapsort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras.
+
+	\end{itemize}	
+	\medskip
+
+
+
+\subsection{Implementación en Assembly}
+
+	El resultado de compilación utilizando el comando \textit{make} será un archivo ejecutable de nombre \textit{tp1}, el cual aceptará un archivo de texto como argumento y lo ordenará con el algoritmo Shellsort.
 \medskip
 
 
@@ -218,6 +220,7 @@
 
 
 
+% Implementación en C
 \subsection{Implementación en C}
 
 	La implementación del programa fue divida en los siguientes módulos:
@@ -225,42 +228,81 @@
 
 \begin{itemize}
 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=2pt \parsep=0pt
-	\item \textbf{tp0}: Programa principal responsable de interpretar los parámetros especificados a través de la terminal de modo de que realice las tareas solicitadas por el usuario. Su función es, de acuerdo al parámetro o los parámetros especificados, llevar a cabo la ejecución solicitada haciendo uso de módulos externos;
-	\item \textbf{pgm}: Módulo encargado de generar una imagen de un tablero de ajedrez (cuadrado, de ocho casilleros de lado) conforme a los parámetros ingresados. Se utiliza para ello el formato gráfico PGM o \textit{portable gray map}. De especificarse un archivo de salida, la imagen en formato PGM se almacenará en este medio.
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item \textbf{tp1}: Programa principal responsable de interpretar los comandos pasados por la terminal de modo que realice las tareas solicitadas por el usuario. Su principal función es encadenar el funcionamiento de los otros módulos y mostrar por pantalla el resultado obtenido;
+	\item \textbf{bubblesort}: Módulo encargado de implementar el algoritmo de ordenamiento Bubblesort. Recibe como parámetros un arreglo de palabras desordenado y el tamaño del mismo. Como resultado devuelve dicho arreglo ordenado.
+	\item \textbf{heapsort}: Módulo encargado de implementar el algoritmo de ordenamiento Heapsort. Recibe como parámetros un arreglo de palabras desordenado y el tamaño del mismo. Como resultado devuelve dicho arreglo ordenado.
 
 \end{itemize}	
+\medskip
+
+
+% Algoritmo Bubblesort 
+\subsubsection{Algoritmo \textit{Bubblesort}}
+
+	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función \textit{bubblesort}, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
+
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBSh,caption=``bubblesort.h'']{../codigo/c/bubblesort.h} 
 \bigskip
 
 
-% Algoritmo PGM
-\subsubsection{Algoritmo \textit{Pgm}}
+% Código
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBSc,caption=``bubblesort.c'']{../codigo/c/bubblesort.c} 
+\bigskip\bigskip
 
-	En el \refcode{codeBSh} se muestra el header de la librería, donde se declara la función \textit{pgm()}, mientras que en el \refcode{codeBSc} se muestra la definición de la librería.
+
+
+
+% Algoritmo Shellsort
+\subsubsection{Algoritmo \textit{Heapsort}}
+
+	En el \refcode{codeHSh} se muestra el header de la librería, donde se declara la función \textit{heapsort}, mientras que en el \refcode{codeHSc} se muestra la definición de la librería.
 
 % Código
-%\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeBSh,caption=``pgm.h'']{../codigo/pgm.h} 
-%\medskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeHSh,caption=``heapsort.h'']{../codigo/c/heapsort.h} 
+\bigskip
 
 
 % Código
-%\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeBSc,caption=``pgm.c'']{../codigo/pgm.c} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeHSc,caption=``heapsort.c'']{../codigo/c/heapsort.c} 
+\bigskip\bigskip
 
 
 
+% Implementación en Assembly
+\subsection{Implementación en Assembly}
 
-\subsection{Generación de código del algoritmo \textit{Pgm} en Assembly MIPS32}
-
-	A continuación se presenta el código en Assembly MIPS32 del algoritmo \textit{Pgm} generado automáticamente por el compilador \textit{GCC}. En el \textit{Apéndice A}	 se encuentra el código del programa en su totalidad.
+	La implementación del programa fue divida en los siguientes módulos:
 	\medskip
 
+\begin{itemize}
+
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item \textbf{tp1}: Solamente recibe un texto como argumento por linea de comandos y lo imprime ordenandolo mediante heapsort. Esta implementado en  lenguaje C;
+	\item \textbf{strcmpi}: Función implementada en assembly MIPS que se encarga de realizar la comparación de strings sin ser sensible a mayúsculas;
+	\item \textbf{heap}: Función implementada en assembly MIPS que se encarga de [...];
+	\item \textbf{heapsort}: Implementación en assembly MIPS del algoritmo de ordenamiento Heapsort.
+
+\end{itemize}	
+\medskip
+
+
+
+
+% Algoritmo Heapsort
+\subsubsection{Algoritmo \textit{Heapsort}}
+
+	En el \refcode{codeHSaMED} se muestra la implementación en assembly del algoritmo Heapsort.
+
 % Código
-%\lstset{ language = [mips]Assembler } % Cambiamos el lenguaje para que parsee en MIPS
-%\lstinputlisting[label=codeBShs,caption=``pgm.s'']{../codigo/pgm.s} 
-%\bigskip\bigskip
+\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeHSaMED,caption=``heapsort.S'']{../codigo/assembly/heapsort.S} 
+\bigskip\bigskip\medskip
 
 
 

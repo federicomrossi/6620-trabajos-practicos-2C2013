@@ -33,7 +33,7 @@ heapsort:	subu	sp,sp,56				# Creamos stack frame.
 			sw		s2,32(sp)
 			sw		s3,28(sp)			
 
-			# Almacenamos los parámetros recibidos
+			# Almacenamos los parametros recibidos
 			sw		a0,56(sp)				# words
 			sw		a1,60(sp)				# arraysize
 
@@ -44,7 +44,7 @@ heapsort:	subu	sp,sp,56				# Creamos stack frame.
 			# Armamos el heap
 			srl 	t0,s1,1 				# t0 = arraysize / 2
 			subu	s2,t0,1 				# i = arraysize / 2 - 1			
-FOR_1:		slt 	t0,s2,zero				# ¿i es menor que 0?
+FOR_1:		slt 	t0,s2,zero				# i es menor que 0
 			bne		t0,zero,FOR_1_FIN		# Si t0 = 1 saltamos a FOR_1_FIN
 			
 			add 	a1,s2,zero				# Cargamos i en a1
@@ -54,7 +54,7 @@ FOR_1:		slt 	t0,s2,zero				# ¿i es menor que 0?
 			subu	s2,s2,1 				# i = i-1 (decrementamos i)
 			j		FOR_1 					# Saltamos a etiqueta FOR_1
 
-			# Iteramos sobre el heap intercambiando la raiz con el último
+			# Iteramos sobre el heap intercambiando la raiz con el ultimo
 			# elemento del arreglo, rearmando luego un heap desde los indices 
 			# 0 al n-1
 FOR_1_FIN:	subu 	s2,s1,1 				# i = arraysize-1
