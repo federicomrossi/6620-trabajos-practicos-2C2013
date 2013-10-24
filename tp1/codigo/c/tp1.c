@@ -30,6 +30,28 @@ char** leerArchivo(char* sourceName, int* cant) {
 	FILE* sourcefd;
 	char** palabras;
 
+	
+	// Se toma '-' como stdin
+    if (sourceName[0] == '-')
+        sourcefd = stdin;
+    // Se abre el archvio correspondiente
+    else {
+        sourcefd = fopen(sourceName,"r");
+        if (!sourcefd) {
+        	fprintf(stderr, "El archivo no pudo ser abierto\n");
+        	return 1;
+        }
+		// Si el archivo esta vacio
+		fseek(sourcefd, 0, SEEK_END);
+		if ( ftell(sourcefd) == 0 ) {
+			fprintf(stderr, "El archivo esta vacio\n");
+			return 1;
+		}
+
+		// Se vuelve al principio
+		fseek(sourcefd, 0, SEEK_SET);
+    }
+
 	/* Cargo el archivo a memoria*/	
 	palabras = (char**)malloc(tamano*sizeof(char*));
 
@@ -129,29 +151,6 @@ int main (int argc, char* argv[]) {
 		fprintf(stderr, "ERROR: No hay suficientes argumentos\n");
 		return 1;
 	}
-
-	char* sourceName = argv[1];
-
-	// Se toma '-' como stdin
-    if (sourceName[0] == '-')
-        sourcefd = stdin;
-    // Se abre el archvio correspondiente
-    else {
-        sourcefd = fopen(sourceName,"r");
-        if (!sourcefd) {
-        	fprintf(stderr, "El archivo no pudo ser abierto\n");
-        	return 1;
-        }
-		// Si el archivo esta vacio
-		fseek(sourcefd, 0, SEEK_END);
-		if ( ftell(sourcefd) == 0 ) {
-			fprintf(stderr, "El archivo esta vacio\n");
-			return 1;
-		}
-
-		// Se vuelve al principio
-		fseek(sourcefd, 0, SEEK_SET);
-    }
 
 
 	// while (1) {
