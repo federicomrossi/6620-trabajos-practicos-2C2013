@@ -5,7 +5,7 @@
  	 			Federico Martin Rossi (92086)
  	 			Pablo Rodriguez (93970)
  Version      : 1.0
- Description  : Programa de 
+ Description  : Programa de ordenamiento heapsort
  ============================================================================
  */
 
