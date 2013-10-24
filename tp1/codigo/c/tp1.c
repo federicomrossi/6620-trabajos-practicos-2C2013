@@ -122,6 +122,7 @@ void ejecutarBubblesort(char* nombreArchivo) {
 
 int main (int argc, char* argv[]) {
 	int c;
+	FILE* sourcefd;
 
 	// Si hay pocos argumentos
 	if (argc < 2) {
