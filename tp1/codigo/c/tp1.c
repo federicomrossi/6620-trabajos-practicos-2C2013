@@ -94,15 +94,15 @@ void displayAyuda() {
 	-h, --help\tImprime esta ayuda. \n\
 	-b, --bubblesort\tEjecuta el algoritmo bubblesort en el ARCHIVO recibido por parametros.\n\
 	-p, --heapsort\tEjecuta el algoritmo bubblesort en el ARCHIVO recibido por parametros.\n\
-	NOTA: De no recibirse una OPCION, se podrán recibir nombres de ARCHIVO, resultando en la\
- concatenación e impresión por pantalla de estos.\
+	NOTA: De no recibirse una OPCION, se podran recibir nombres de ARCHIVO, resultando en la\
+ concatenacion e impresion por pantalla de estos.\
 	\nEjemplos:\n\
 	tp1 -b palabras.txt\n\
 	tp1 -p palabras.txt\n");
 }
 
 void displayVersion() {
-	printf("%s", "Esta aplicación ejecuta un ordenamiento sobre las palabras contenidas en un archivo.\
+	printf("%s", "Esta aplicacion ejecuta un ordenamiento sobre las palabras contenidas en un archivo.\
  Puede ejecutarse el algoritmo heapsort o bubblesort.\
 	\nVersion: v1.0\n");
 }

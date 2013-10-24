@@ -158,7 +158,7 @@
 % Introducción
 \section{Introducción}
 	
-	En el presente trabajo se tiene como objetivo la comparación entre dos algoritmos de ordenamiento: el \textit{Bubblesort} y el \textit{Heapsort}.
+	En el presente trabajo se tiene como objetivo la comparación entre dos algoritmos de ordenamiento: el \textit{Bubblesort}\cite{BS} y el \textit{Heapsort}\cite{HS}.
 	Para realizar dicha comparación entre ambos se realizó la implementación en lenguaje C de cada uno de estos. A su vez, para comparar el rendimiento entre código de alto nivel y de código nativo, se desarrollo la implementación del Heapsort en assembly MIPS, con el fin de poder comparar los tiempos de ejecución de ambos programas y realizar así un estudio de las mejoras que se producen.
 	\par
 	La totalidad del trabajo se ha realizado en una plataforma \textit{NetBSD/MIPS-32} mediante el \textit{GXEmul} \cite{GXEMUL}.
@@ -180,12 +180,11 @@
 
 
 
-
 % Utilización
 \section{Utilización}
 	
 	En los siguientes apartados se especifica la forma en la que deben ser ejecutados los programas implementados tanto en C como en assembly MIPS.
-
+\medskip
 
 
 % Utilización - Implementación en C
@@ -210,7 +209,7 @@
 \subsection{Implementación en Assembly}
 
 	El resultado de compilación utilizando el comando \textit{make} será un archivo ejecutable de nombre \textit{tp1}, el cual aceptará un archivo de texto como argumento y lo ordenará con el algoritmo Heapsort.
-\medskip
+\bigskip\bigskip
 
 
 
@@ -254,7 +253,7 @@
 % Código
 \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
 \lstinputlisting[label=codeBSc,caption=``bubblesort.c'']{../codigo/c/bubblesort.c} 
-\bigskip\bigskip
+\bigskip
 
 
 
@@ -274,7 +273,7 @@
 \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
 \lstinputlisting[label=codeHSc,caption=``heapsort.c'']{../codigo/c/heapsort.c} 
 \bigskip\bigskip
-
+\newpage
 
 
 % Implementación en Assembly
@@ -313,31 +312,23 @@
 \section{Debugging}
 	
 	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir de los algoritmos \textit{Bubblesort} como \textit{Heapsort}. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
-\bigskip\bigskip
+\bigskip
 
 
-\newpage
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.36\textwidth]{images/200x200.jpg}
-%	\medskip
-%	\caption{Imágen del tablero de ajedrez con resolución de 200x200 píxeles.}
-%\end{figure}
-%\bigskip\bigskip
 
-
-\subsection{Tiempos de ejecución}
+\section{Tiempos de ejecución}
 
 	\par
 	Se desea medir el tiempo que tarda el programa en ejecutarse en la máquina virtual MIPS32. Para ello se utilizó el comando \textit{GNU ``time''} \cite{TIME}, que mide los tiempos de ejecución de un programa. Existen dos casos de prueba interesantes a comparar. 
-	
-	El primero es la comparación entre el \texit{Bubblesort} y el \texit{Heapsort}, ambos realizados en el programa en \texit{C}. Como se observa en la tabla siguiente, el primer algoritmo resulta muchísimo más lento que el segundo. Esto se debe a que la performance del Bubblesort (en el peor caso de \(n^2\)) es mucho mayor a la del Heapsort (en el peor caso de \(n*log(n)\)).
+	\par
+	El primero es la comparación entre el \textit{Bubblesort} y el \textit{Heapsort}, ambos realizados en el programa en \textit{C}. Como se observa en el \textit{Cuadro 1}, el primer algoritmo resulta muchísimo más lento que el segundo. Esto se debe a que la performance del Bubblesort (en el peor caso de \(n^2\)) es mucho mayor a la del Heapsort (en el peor caso de \(n*log(n)\)).
 	\medskip
+	\newpage
 
 	% Tabla 1
 	\begin{table}[!hbt]
 		\begin{center}
-		\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+		\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
 			\hline
 			\rowcolor[gray]{0.9}\textbf{Nombre de Archivo} & \textbf{Tiempo bubblesort} & \textbf{Tiempo heapsort}\\
 			\hline
@@ -354,28 +345,28 @@
 		\caption{Tiempos obtenidos en la ejecución\\ del programa en C para distintos archivos de entrada.}
 		\end{center}
 	\end{table}
-
 	\bigskip
-	A continuación se observa el speedup del Bubblesort contra el Heapsort:
-	\medskip
+	
+	En la \textit{Figura 1} se puede observar el speedup del Bubblesort contra el Heapsort:
+	\bigskip
 
 	% Grafico del speedup
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.36\textwidth]{SpeedUpBubblevsHeap.png}
+		\includegraphics[width=0.88\textwidth]{images/SpeedUpBubblevsHeap.png}
 		\medskip
 		\caption{Gráfico del speedup del Bubblesort contra el Heapsort.}
 	\end{figure}
 	\bigskip\bigskip
 
-	\bigskip
-	En el segundo caso, se compara el tiempo de ejecución del algoritmo \textit{Heapsort} en sus dos versiones: la que genera el compilador de C y la que fue diseñada e implementada en Assembly de MIPS32. Como se observa en la figura, el algoritmo con mejor performance fue el diseñado para Assembly de MIPS2. Se debe notar que al compilar con \texit{GCC} no se le agregó ninguna optimización al código de Assembly (opción por default al compilar). 
-	\medskip
 
-	% Tabla 1
+	En el segundo caso, se compara el tiempo de ejecución del algoritmo \textit{Heapsort} en sus dos versiones: la que genera el compilador de C y la que fue diseñada e implementada en Assembly de MIPS32. Como se observa en la \textit{Figura 2}, el algoritmo con mejor performance fue el diseñado para Assembly de MIPS32. Se debe notar que al compilar con \textit{GCC} no se le agregó ninguna optimización al código de Assembly (opción por default al compilar). 
+	\bigskip
+
+	% Tabla 2
 	\begin{table}[!hbt]
 		\begin{center}
-		\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+		\begin{tabular}{|>{\centering\arraybackslash}m{5cm}|>{\centering \arraybackslash}m{4cm}|>{\centering \arraybackslash}m{3cm}|}
 			\hline
 			\rowcolor[gray]{0.9}\textbf{Nombre de Archivo} & \textbf{Tiempo Heapsort MIPS32} & \textbf{Tiempo heapsort C}\\
 			\hline
@@ -397,28 +388,29 @@
 	% Gráfico de barras de la performance
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.36\textwidth]{CvsMips.png}
+	\includegraphics[width=0.88\textwidth]{images/CvsMips.png}
 	\medskip
-		\caption{Gráfico comparando la performance del Heapsort en sus dos implementaciones.}
+		\caption{Gráfico comparando la performance del Heapsort\\ en sus dos implementaciones (C vs Assembly).}
 	\end{figure}
+	\bigskip\bigskip\bigskip
+
+
+	En la \textit{Figura 3} se observa el speedup del Heapsort en C contra la versión en Assembly.
 	\bigskip
 
-	A continuación se observa el speedup del Heapsort en C contra la versión en Assembly:
-	\medskip
 
 	% Grafico del speedup
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.36\textwidth]{SpeedUpCvsAssembly.png}
+		\includegraphics[width=0.88\textwidth]{images/SpeedUpCvsAssembly.png}
 		\medskip
-		\caption{Gráfico del speedup del Heapsort en C contra la versión en Assembly.}
+		\caption{Gráfico del speedup del Heapsort en C contra\\ la versión en Assembly.}
 	\end{figure}
 	\bigskip\bigskip
 
 
-\newpage
 \section{Conclusiones}
-	\par
+
 	Se puede observar que existen diferencias significativas entre los algoritmos Bubblesort y el Heapsort, con respecto a los tiempos de ejecución. Es notable que el Bubblesort es inferior en cuanto a la performance comparado con el Heapsort (ambos implementados en C). Esto se puede corroborar observando el speedup obtenido.
 
 	También se pueden ver las diferencias en el Heapsort en sus dos implementaciones: en C y em Assembly MIPS32. Los tiempos de ejecución de ambos son muy similares, pero se puede observar que la versión diseñada para Assembly es apenas mejor. También se puede corroborar esto observando el speedup obtenido.
@@ -429,11 +421,17 @@
 % Citas bibliográficas.
 \begin{thebibliography}{99}
 
+	\bibitem{BS} Bubblesort, \url{http://en.wikipedia.org/wiki/Bubble_sort}
+
+	\bibitem{HS} Heapsort, \url{http://en.wikipedia.org/wiki/Heapsort}
+
 	\bibitem{GXEMUL} The NetBSD project, \url{http://www.netbsd.org/}
 
 	\bibitem{GCC} GCC, the GNU Compiler Collection, \url{http://gcc.gnu.org/}
 
 	\bibitem{TIME} time man page, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?time}
+
+	\bibitem{ABI} MIPS ABI, \url{http://www.sco.com/developers/devspecs/mipsabi.pdf}
 
 	\bibitem{HEN00} J. L. Hennessy and D. A. Patterson, ``Computer Architecture. A Quantitative
 	Approach,'' 4th Edition, Morgan Kaufmann Publishers, 2000.
@@ -480,7 +478,9 @@
 % Código
 \lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
 \lstinputlisting[label=codeBScfull,caption=``heapsort.c'']{../codigo/c/heapsort.c} 
-\bigskip\bigskip
+\newpage
+
+
 
 % Implementación completa en lenguaje C
 \section{Implementación completa en lenguaje Assembly MIPS32}
