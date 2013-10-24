@@ -39,13 +39,13 @@ char** leerArchivo(char* sourceName, int* cant) {
         sourcefd = fopen(sourceName,"r");
         if (!sourcefd) {
         	fprintf(stderr, "El archivo no pudo ser abierto\n");
-        	return 1;
+        	return 0;
         }
 		// Si el archivo esta vacio
 		fseek(sourcefd, 0, SEEK_END);
 		if ( ftell(sourcefd) == 0 ) {
 			fprintf(stderr, "El archivo esta vacio\n");
-			return 1;
+			return 0;
 		}
 
 		// Se vuelve al principio
@@ -111,6 +111,9 @@ void ejecutarHeapsort(char* nombreArchivo) {
 	int i, size;
 	char** palabras = leerArchivo(nombreArchivo, &size);
 
+	if (!palabras)
+		return;
+
 	/*Ordeno*/
     heapsort(palabras,size);
 	
@@ -127,6 +130,9 @@ void ejecutarHeapsort(char* nombreArchivo) {
 void ejecutarBubblesort(char* nombreArchivo) {
 	int i, size;
 	char** palabras = leerArchivo(nombreArchivo, &size);
+
+	if (!palabras)
+		return;
 
 	/*Ordeno*/
     bubblesort(palabras,size);
