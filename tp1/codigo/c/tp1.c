@@ -123,10 +123,33 @@ void ejecutarBubblesort(char* nombreArchivo) {
 int main (int argc, char* argv[]) {
 	int c;
 
+	// Si hay pocos argumentos
 	if (argc < 2) {
-		printf("Error: no se recibieron argumentos\n");
+		fprintf(stderr, "ERROR: No hay suficientes argumentos\n");
 		return 1;
 	}
+
+	// Se toma '-' como stdin
+    if (sourceName[0] == '-')
+        sourcefd = stdin;
+    // Se abre el archvio correspondiente
+    else {
+        sourcefd = fopen(sourceName,"r");
+        if (!sourcefd) {
+        	fprintf(stderr, "El archivo no pudo ser abierto\n");
+        	return 1;
+        }
+		// Si el archivo esta vacio
+		fseek(sourcefd, 0, SEEK_END);
+		if ( ftell(sourcefd) == 0 ) {
+			fprintf(stderr, "El archivo esta vacio\n");
+			return 1;
+		}
+
+		// Se vuelve al principio
+		fseek(sourcefd, 0, SEEK_SET);
+    }
+
 
 	// while (1) {
 	static struct option opciones[] = {
