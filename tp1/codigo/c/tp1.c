@@ -12,16 +12,19 @@
 #include "heapsort.h"
 #include "bubblesort.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <getopt.h>
+void* malloc(size_t);
+void* realloc(void*,size_t);
+void free(void*);
+
 
 /** Funciones Auxiliares **/
 
 // Devuelve la cantidad de palabras leidas
 char** leerArchivo(char* sourceName, int* cant) {
     int size = 0;
-	int tamano = 200;
+	int tamano = 5000;
 	int tam;	
 	char word[50];
 	FILE* sourcefd;
@@ -40,21 +43,19 @@ char** leerArchivo(char* sourceName, int* cant) {
 	fscanf(sourcefd, "%s", word);
 	while (!feof(sourcefd)){
 		if (size >= tamano){
-			tamano += 200;
+			tamano += 5000;
 			palabras = (char**)realloc(palabras, tamano*sizeof(char*));
 		}
 		tam = strlen(word) + 1;
 		if (palabras == NULL) {
-			printf("%s ", word);
-			printf("\n\nOhh ou\n\n");
+			fprintf(stderr,"\n\nNo se pueden alocar mas palabras\n\n");
+			break;
 		}
 		palabras[size] = malloc(tam);
 		memcpy(palabras[size], word, tam);
 		size++;
 		fscanf(sourcefd, "%s", word);
 	}
-	// Debug
-	printf("Ultima pal: %s y cant de pal leidas: %d", word, size);
 	// Se cierra el archivo si corresponde
 	if (sourceName[0] != '-')
 		fclose(sourcefd);
@@ -89,7 +90,7 @@ void ejecutarHeapsort(char* nombreArchivo) {
 	char** palabras = leerArchivo(nombreArchivo, &size);
 
 	/*Ordeno*/
-    heapsort_(palabras,size);
+    heapsort(palabras,size);
 	
 	/*Imprimo el resultado y libero memoria*/
     for(i=0;i<size;i++){
@@ -106,7 +107,7 @@ void ejecutarBubblesort(char* nombreArchivo) {
 	char** palabras = leerArchivo(nombreArchivo, &size);
 
 	/*Ordeno*/
-    bubblesort_(palabras,size);
+    bubblesort(palabras,size);
 	
 	/*Imprimo el resultado y libero memoria*/
     for(i=0;i<size;i++){
