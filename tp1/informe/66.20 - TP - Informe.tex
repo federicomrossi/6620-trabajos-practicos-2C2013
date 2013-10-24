@@ -29,6 +29,9 @@
 \usepackage[toc,page]{appendix}
 \usepackage{mips}
 
+% Paquete Matematica
+\usepackage{mathtools}
+
 
 %% Fin PAQUETES
 
@@ -155,7 +158,7 @@
 % Introducción
 \section{Introducción}
 	
-	En el presente trabajo se tiene como objetivo la comparación entre dos algoritmos de ordenamiento: el \textit{Bubblesort} y el \textit{Shellsort}.
+	En el presente trabajo se tiene como objetivo la comparación entre dos algoritmos de ordenamiento: el \textit{Bubblesort} y el \textit{Heapsort}.
 	Para realizar dicha comparación entre ambos se realizó la implementación en lenguaje C de cada uno de estos. A su vez, para comparar el rendimiento entre código de alto nivel y de código nativo, se desarrollo la implementación del Heapsort en assembly MIPS, con el fin de poder comparar los tiempos de ejecución de ambos programas y realizar así un estudio de las mejoras que se producen.
 	\par
 	La totalidad del trabajo se ha realizado en una plataforma \textit{NetBSD/MIPS-32} mediante el \textit{GXEmul} \cite{GXEMUL}.
@@ -170,7 +173,7 @@
 \section{Compilación}
 	
 	
-	La herramienta para compilar tanto el código asembly como C será el \textit{GCC} \cite{GCC}. Para tratar de equiparar al máximo el \textit{S} generado por ambas implementaciones, se utilizará el flag de gcc ``-O0'' para que no realice optimizaciones sobre el código en lenguaje C.
+	La herramienta para compilar tanto el código asembly como C será el \textit{GCC} \cite{GCC}. 
 	\par
 	Para automatizar las tareas de compilación se hace uso de la herramienta \textit{GNU Make}. Los Makefiles utilizados para la compilación se incluyen junto al resto de los archivos fuentes del presente trabajo \footnote{Los archivos se encuentran separados según la implemetación a la que pertenecen, por lo que habrán dos Makefiles distintos, uno para la implementación en lenguaje C y otro para la implementación en assembly}.
 \bigskip
@@ -196,8 +199,8 @@
 		\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
 			\item \textit{-h}:  Imprime ayuda para la utilización del programa;
 			\item \textit{-V}:  Imprimer la versión actual del programa;
-			\item \textit{-b [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Bubblersort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras;
-			\item \textit{-s [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Heapsort. Para utilizar \textit{stdin} deberá omitirse [ARGS] y luego introducir las palabras.
+			\item \textit{-b [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Bubblersort. Para utilizar \textit{stdin} deberá ingresarse el caracter '-' y luego introducir las palabras;
+			\item \textit{-p [ARGS]}:  El programa recibe nombres de archivos de texto o strings ingresados por \textit{stdin}, ordenandolos utilizando el algoritmo Heapsort. Para utilizar \textit{stdin} deberá ingresarse el caracter '-' y luego introducir las palabras.
 
 	\end{itemize}	
 	\medskip
@@ -206,7 +209,7 @@
 
 \subsection{Implementación en Assembly}
 
-	El resultado de compilación utilizando el comando \textit{make} será un archivo ejecutable de nombre \textit{tp1}, el cual aceptará un archivo de texto como argumento y lo ordenará con el algoritmo Shellsort.
+	El resultado de compilación utilizando el comando \textit{make} será un archivo ejecutable de nombre \textit{tp1}, el cual aceptará un archivo de texto como argumento y lo ordenará con el algoritmo Heapsort.
 \medskip
 
 
@@ -215,7 +218,7 @@
 % Implementación
 \section{Implementación}
 	
-	En lo que sigue de la sección, se presentarán los códigos fuente de la implementación del algoritmo. Aquellos lectores interesados en la implementación completa del programa, pueden dirigirse al apéndic ubicado al final del presente informe.
+	En lo que sigue de la sección, se presentarán los códigos fuente de la implementación del algoritmo. Aquellos lectores interesados en la implementación completa del programa, pueden dirigirse al apéndice ubicado al final del presente informe.
 \bigskip
 
 
@@ -256,7 +259,7 @@
 
 
 
-% Algoritmo Shellsort
+% Algoritmo Heapsort
 \subsubsection{Algoritmo \textit{Heapsort}}
 
 	En el \refcode{codeHSh} se muestra el header de la librería, donde se declara la función \textit{heapsort}, mientras que en el \refcode{codeHSc} se muestra la definición de la librería.
@@ -283,9 +286,9 @@
 \begin{itemize}
 
 \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textbf{tp1}: Solamente recibe un texto como argumento por linea de comandos y lo imprime ordenandolo mediante heapsort. Esta implementado en  lenguaje C;
+	\item \textbf{tp1}: Solamente recibe un texto como argumento por linea de comandos y lo imprime ordenandolo mediante heapsort. Esta implementado en lenguaje C;
 	\item \textbf{strcmpi}: Función implementada en assembly MIPS que se encarga de realizar la comparación de strings sin ser sensible a mayúsculas;
-	\item \textbf{heap}: Función implementada en assembly MIPS que se encarga de [...];
+	\item \textbf{heap}: Función implementada en assembly MIPS que se encarga de armar la estructura heap que es necesaria en cada paso del heapsort;
 	\item \textbf{heapsort}: Implementación en assembly MIPS del algoritmo de ordenamiento Heapsort.
 
 \end{itemize}	
@@ -309,120 +312,8 @@
 % Debugging
 \section{Debugging}
 	
-	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir del algorirmo \textit{pgm}. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
+	Para analizar el correcto funcionamiento del programa se crearon casos de prueba pertinentes, considerando combinaciones diferentes en el ingreso de parámetros al programa principal, como también tomando en cuenta las diferentes salidas obtenidas a partir de los algoritmos \textit{Bubblesort} como \textit{Heapsort}. Los resultados fueron comparados con los casos esperados y así se determinó el correcto funcionamiento del programa en su totalidad.
 \bigskip\bigskip
-
-
-
-
-% Pruebas
-\section{Pruebas}
-
-\subsection{Pruebas al ingreso y egreso de datos del programa}
-\medskip
-
-	A modo de prueba del programa, se ingresaron ciertos parámetros a éste y se analizó la salida obtenida. A continuación se presentan algunas pruebas realizadas y los resultados obtenidos.
-	\par
-	El primer caso consiste en crear un tablero de resolución 11x16 y que el resultado sea enviado a la salida estandar. Se debe ingresar por consola lo siguiente:
-	\bigskip
-
-{\ttfamily\footnotesize
-\indent \$ ./tp0 -r 11x16 -o -\\}
-\smallskip
-
-	La salida del programa es la siguiente:
-	\bigskip
-
-{\ttfamily\footnotesize
-	\indent P2 \\
-	\indent \# - \\
-	\indent 11 16 \\
-	\indent 1 \\
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 1 1 0 0 1 1 0 1 0 1 0 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-	\indent 0 0 1 1 0 0 1 0 1 0 1 \\ 
-}
-\bigskip
-
-
-	La segunda prueba consiste en crear un tablero de resolución 16x11 y también enviar la salida a consola. Se debe ingresar por la línea de comandos:
-	\bigskip
-
-{\ttfamily\footnotesize
-\indent \$ ./tp0 -r 16x11 -o -\\}
-\smallskip
-
-	La salida del programa es la siguiente:
-	\bigskip
-
-{\ttfamily\footnotesize
-	\indent P2 \\
-	\indent \# - \\
-	\indent 16 11 \\
-	\indent 1 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
-	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
-	\indent 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 0 \\
-	\indent 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 \\
-}
-\bigskip
-
-
-	La tercer prueba consiste en generar el tablero de tamaño default 8x8 (se genera en caso de no ingresar la opción -r), ingresando por consola:
-	\bigskip
-
-{\ttfamily\footnotesize
-\indent \$ ./tp0 -o -\\}
-\smallskip
-
-	El resultado del programa se ve por salida standard y es el siguiente:
-	\bigskip
-
-{\ttfamily\footnotesize
-	\indent P2 \\
-	\indent \# - \\
-	\indent 8 8 \\
-	\indent 1 \\
-	\indent 1 0 1 0 1 0 1 0 \\
-	\indent 0 1 0 1 0 1 0 1 \\
-	\indent 1 0 1 0 1 0 1 0 \\
-	\indent 0 1 0 1 0 1 0 1 \\
-	\indent 1 0 1 0 1 0 1 0 \\
-	\indent 0 1 0 1 0 1 0 1 \\
-	\indent 1 0 1 0 1 0 1 0 \\
-	\indent 0 1 0 1 0 1 0 1 \\
-}
-\bigskip
-
-
-	Una prueba más interesante, es aquella en la cual la resolución permite ver una imagen bastante amplia. En este caso se considera una resolución de 200x200 y se decide guardar la salida en un archivo. Se debe ingresar por consola:
-	\bigskip
-
-{\ttfamily\footnotesize
-\indent \$ ./tp0 -r 200x200 -o 200x200.pgm\\}
-\smallskip
-
-	La salida en formato de imagen \textit{PGM} se muestra en la \textit{Figura 1}.
 
 
 \newpage
@@ -438,61 +329,91 @@
 \subsection{Tiempos de ejecución}
 
 	\par
-	Se quiere medir el tiempo que tarda el programa en la máquina virtual MIPS32 en crear un tablero de ajedrez con ciertas características. Para ello se realizó un módulo aparte que, con la ayuda del comando \textit{GNU ``time''} \cite{TIME}, mide los tiempos de la realización de un tablero de resolución 1x1 hasta uno de 1000x1000. 
-	\par
-	Los datos obtenidos se pueden observar en el \textit{Cuadro 1}. 
+	Se desea medir el tiempo que tarda el programa en ejecutarse en la máquina virtual MIPS32. Para ello se utilizó el comando \textit{GNU ``time''} \cite{TIME}, que mide los tiempos de ejecución de un programa. Existen dos casos de prueba interesantes a comparar. 
+	
+	El primero es la comparación entre el \texit{Bubblesort} y el \texit{Heapsort}, ambos realizados en el programa en \texit{C}. Como se observa en la tabla siguiente, el primer algoritmo resulta muchísimo más lento que el segundo. Esto se debe a que la performance del Bubblesort (en el peor caso de \(n^2\)) es mucho mayor a la del Heapsort (en el peor caso de \(n*log(n)\)).
+	\medskip
+
+	% Tabla 1
+	\begin{table}[!hbt]
+		\begin{center}
+		\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+			\hline
+			\rowcolor[gray]{0.9}\textbf{Nombre de Archivo} & \textbf{Tiempo bubblesort} & \textbf{Tiempo heapsort}\\
+			\hline
+			\centering 25deMayo.txt & 12m 59,617s & 0m 3,648s \\
+			\hline
+			\centering argentina.txt & 97m 3,371s & 0m 12,336s \\
+			\hline
+			\centering cookbook.txt & 1m 36,246s & 0m 1,250s \\
+			\hline
+			\centering 2pac.txt & 53m 23,574s & 0m 7,664s \\
+			\hline
+		\end{tabular}
+		\smallskip
+		\caption{Tiempos obtenidos en la ejecución\\ del programa en C para distintos archivos de entrada.}
+		\end{center}
+	\end{table}
+
+	\bigskip
+	A continuación se observa el speedup del Bubblesort contra el Heapsort:
+	\medskip
+
+	% Grafico del speedup
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.36\textwidth]{images/200x200.jpg}
+		\medskip
+		\caption{Gráfico del speedup del Bubblesort contra el Heapsort.}
+	\end{figure}
 	\bigskip\bigskip
 
+	\bigskip
+	En el segundo caso, se compara el tiempo de ejecución del algoritmo \textit{Heapsort} en sus dos versiones: la que genera el compilador de C y la que fue diseñada e implementada en Assembly de MIPS32. Como se observa en la figura, el algoritmo con mejor performance fue el diseñado para Assembly de MIPS2. Se debe notar que al compilar con \texit{GCC} no se le agregó ninguna optimización al código de Assembly (opción por default al compilar). 
+	\medskip
 
-% Tabla 1
-\begin{table}[!hbt]
-	\begin{center}
-	\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
-		\hline
-		\rowcolor[gray]{0.9}\textbf{Resolución} & \textbf{Tiempo de ejecución [s]}\\
-		\hline
-		\centering 1x1 & 0,051 \\
-		\hline
-		\centering 100x100 & 0,316 \\
-		\hline
-		\centering 200x200 & 1,148 \\
-		\hline
-		\centering 300x300 & 2,5 \\
-		\hline
-		\centering 400x400 & 4,434 \\
-		\hline
-		\centering 500x500 & 6,844 \\
-		\hline
-		\centering 600x600 & 9,848 \\
-		\hline
-		\centering 700x700 & 13,5 \\
-		\hline
-		\centering 800x800 & 17,449 \\
-		\hline
-		\centering 900x900 & 22,152 \\
-		\hline
-		\centering 1000x1000 & 27,613 \\
-		\hline
-	\end{tabular}
-	\smallskip
-	\caption{Tiempos en segundos obtenidos en la ejecución\\ del programa para distintas resoluciones.}
-	\end{center}
-\end{table}
-\bigskip\bigskip
+	% Tabla 1
+	\begin{table}[!hbt]
+		\begin{center}
+		\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering \arraybackslash}m{3cm}|}
+			\hline
+			\rowcolor[gray]{0.9}\textbf{Nombre de Archivo} & \textbf{Tiempo Heapsort MIPS32} & \textbf{Tiempo heapsort C}\\
+			\hline
+			\centering 25deMayo.txt & 3,336s & 3,648s \\
+			\hline
+			\centering argentina.txt & 11,826s & 12,336s \\
+			\hline
+			\centering cookbook.txt & 0,949s & 1,250s \\
+			\hline
+			\centering 2pac.txt & 6,781s & 7,664s \\
+			\hline
+		\end{tabular}
+		\smallskip
+		\caption{Tiempos obtenidos en la ejecución\\ del algoritmo Heapsort para distintos archivos de entrada.}
+		\end{center}
+	\end{table}
+	\bigskip
 
+	% Gráfico de barras de la performance
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.36\textwidth]{CvsMips.png}
+	\medskip
+		\caption{Gráfico comparando la performance del Heapsort en sus dos implementaciones.}
+	\end{figure}
+	\bigskip
 
-	En la \textit{Figura 2} se presenta un diagrama resumido de los tiempos de ejecución obtenidos. Como es de esperar, se obtiene una curva cuadrática.
+	A continuación se observa el speedup del Heapsort en C contra la versión en Assembly:
+	\medskip
 
-
-\newpage	
-% Figura 2
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=1.0\textwidth]{images/grafico-tiempos.jpg}
-%	\caption{Gráfico de tiempo de ejecución (en segundos) respecto\\ de la resolución de imagen generada.}
-%\end{figure}
-%\bigskip\bigskip\bigskip
-
+	% Grafico del speedup
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.36\textwidth]{images/200x200.jpg}
+		\medskip
+		\caption{Gráfico del speedup del Heapsort en C contra la versión en Assembly.}
+	\end{figure}
+	\bigskip\bigskip
 
 
 
@@ -502,8 +423,6 @@
 	\bibitem{GXEMUL} The NetBSD project, \url{http://www.netbsd.org/}
 
 	\bibitem{GCC} GCC, the GNU Compiler Collection, \url{http://gcc.gnu.org/}
-
-	\bibitem{BS} PGM format speciffication, \url{http://netpbm.sourceforge.net/doc/pgm.html}
 
 	\bibitem{TIME} time man page, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?time}
 
@@ -524,41 +443,63 @@
 \section{Implementación completa en lenguaje C}
 
 
-\subsection{\textit{tp0.c}. Implementación del main del programa}
+\subsection{\textit{tp1.c}. Implementación del main del programa}
 % Código
-%\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeTP0cfull,caption=``tp0.c'']{../codigo/tp0.c} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeTP0cfull,caption=``tp1.c'']{../codigo/c/tp1.c} 
+\bigskip\bigskip
 
-\subsection{\textit{pgm.h}. Declaración de la librería Pgm}
+\subsection{\textit{bubblesort.h}. Declaración del algoritmo Bubblesort}
 % Código
-%\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeBShfull,caption=``pgm.h'']{../codigo/pgm.h} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBShfull,caption=``bubblesort.h'']{../codigo/c/bubblesort.h} 
+\bigskip\bigskip
 
-\subsection{\textit{pgm.c}. Definición de la librería Pgm}
+\subsection{\textit{bubblesort.c}. Definición del algoritmo Bubblesort}
 % Código
-%\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeBScfull,caption=``pgm.c'']{../codigo/pgm.c} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBScfull,caption=``bubblesort.c'']{../codigo/c/bubblesort.c} 
+\bigskip\bigskip
 
-
-
-% Implementación completa en assembly MIPS
-\section{Generación del código completo en assembly MIPS}
-
-
-\subsection{\textit{tp0.s}. Generación del main del programa}
+\subsection{\textit{heapsort.h}. Declaración del algoritmo Heapsort}
 % Código
-%\lstset{ language = [mips]Assembler } % Cambiamos el lenguaje para que parsee en C
-%\lstinputlisting[label=codeTP0afull,caption=``tp0.s'']{../codigo/tp0.s} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBShfull,caption=``heapsort.h'']{../codigo/c/heapsort.h} 
+\bigskip\bigskip
 
-\subsection{\textit{pgm.s}. Generación del algoritmo Pgm}
+\subsection{\textit{heapsort.c}. Definición del algoritmo Heapsort}
 % Código
-%\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
-%\lstinputlisting[label=codeSSafull,caption=``pgm.s'']{../codigo/pgm.s} 
-%\bigskip\bigskip
+\lstset{ language = C } % Cambiamos el lenguaje para que parsee en C
+\lstinputlisting[label=codeBScfull,caption=``heapsort.c'']{../codigo/c/heapsort.c} 
+\bigskip\bigskip
+
+% Implementación completa en lenguaje C
+\section{Implementación completa en lenguaje Assembly MIPS32}
+
+
+\subsection{\textit{tp1.c}. Implementación del main del programa}
+% Código
+\lstset{ language =C } % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeTP0cfull,caption=``tp1.c'']{../codigo/assembly/tp1.c} 
+\bigskip\bigskip
+
+\subsection{\textit{heapsort.S}. Definición del algoritmo Heapsort}
+% Código
+\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeTP0cfull,caption=``heapsort.S'']{../codigo/assembly/heapsort.S} 
+\bigskip\bigskip
+
+\subsection{\textit{heap.S}. Definición del algoritmo Heap}
+% Código
+\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeTP0cfull,caption=``heap.S'']{../codigo/assembly/heap.S} 
+\bigskip\bigskip
+
+\subsection{\textit{strcmpi.S}. Definición del algoritmo Strcmpi}
+% Código
+\lstset{ language = [mips]Assembler} % Cambiamos el lenguaje para que parsee en MIPS
+\lstinputlisting[label=codeTP0cfull,caption=``strcmpi.S'']{../codigo/assembly/strcmpi.S} 
+\bigskip\bigskip
 
 
 \end{appendices}
