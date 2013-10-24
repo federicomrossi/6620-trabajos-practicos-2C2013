@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 	int tamano=200;
     int i;
 	int tam;
-	char* sourceName=argv[1];	
+	char* sourceName;	
 	char word[50];
 	FILE* sourcefd;
 
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "ERROR: No hay suficientes argumentos\n");
 		return 1;
 	}
-
+	sourceName=argv[1];
 	// Se toma '-' como stdin
     if (sourceName[0] == '-')
         sourcefd = stdin;
