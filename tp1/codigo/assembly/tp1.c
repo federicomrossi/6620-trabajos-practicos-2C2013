@@ -32,14 +32,14 @@ int main(int argc, char* argv[]) {
 	sourcefd = fopen(sourceName,"r");
 	fscanf(sourcefd,"%s",word);
 	while(!feof(sourcefd)){
+		if(size >= tamano){
+			tamano+=200;
+			palabras=realloc(palabras,tamano*sizeof(char*));
+		}
 		tam=strlen(word)+1;
 		palabras[size]=malloc(tam);
 		memcpy(palabras[size],word,tam);
 		size++;
-		if(size > tamano){
-			tamano+=200;
-			palabras=realloc(palabras,tamano*sizeof(char*));
-		}
 		fscanf(sourcefd,"%s",word);
 	}
 	fclose(sourcefd);
