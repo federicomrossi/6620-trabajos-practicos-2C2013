@@ -17,7 +17,7 @@
 void* malloc(size_t);
 void* realloc(void*,size_t);
 void free(void*);
-
+int system(const char* cadena);
 
 /** Funciones Auxiliares **/
 
