@@ -20,6 +20,17 @@ void free(void*);
 int system(const char* cadena);
 
 /** Funciones Auxiliares **/
+void readWord(FILE* fd,char* word){
+	int index=0;
+	int c;
+	while((c=getc(fd))!=EOF && c!=32 && c!='\n'  && index < 49){
+		if((c>=48 && c<=57) || (c>=65 && c<=90) ||
+			(c>=97 && c<=122) || (c>=130 && c<=165)){
+			word[index++]=c;
+		}
+	}
+	word[index]='\0';
+}
 
 // Devuelve la cantidad de palabras leidas
 char** leerArchivo(char* sourceName, int* cant) {
@@ -62,7 +73,7 @@ char** leerArchivo(char* sourceName, int* cant) {
 	else
 		sourcefd = fopen(sourceName,"r");
 
-	fscanf(sourcefd, "%s", word);
+	readWord(sourcefd,word);
 	while (!feof(sourcefd)){
 		if (size >= tamano){
 			tamano += 5000;
@@ -76,7 +87,7 @@ char** leerArchivo(char* sourceName, int* cant) {
 		palabras[size] = malloc(tam);
 		memcpy(palabras[size], word, tam);
 		size++;
-		fscanf(sourcefd, "%s", word);
+		readWord(sourcefd, word);
 	}
 	// Se cierra el archivo si corresponde
 	if (sourceName[0] != '-')
