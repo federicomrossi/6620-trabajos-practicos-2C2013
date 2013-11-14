@@ -9,8 +9,8 @@ gen:
 	gcc -g -c -w strcmpi.S -o strcmpi.o	
 	gcc -g -c -w heap.S -o heap.o
 	gcc -g -c -w heapsort.S -o heapsort.o
+	gcc -g -c -w bubblesort.c -o bubblesort.o
 	gcc -g -c -w tp1.c -o tp1.o
-	bubblesort.o
 	gcc -g -w strcmpi.o heap.o heapsort.o bubblesort.o tp1.o -o tp1
 
 tp1: bubblesort.o heapsort.o tp1.o
